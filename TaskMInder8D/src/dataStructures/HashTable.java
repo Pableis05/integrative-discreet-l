@@ -21,7 +21,7 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V> 
     */
     @Override
     public int hash(K key) {
-        int hash= key.hashCode() % table.length;
+        int hash=(int) Math.abs(Math.floor(key.hashCode())) % table.length;
         return hash;
     }
 
@@ -82,7 +82,7 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V> 
      * @param key The key parameter is the key of the entry that we want to retrieve the value for.
      * @return The value associated with the specified key.
      */
-    public V get(K key) {
+    public V search(K key) {
         V value = null;
         value = getNode(key).getValue();
         return value;
