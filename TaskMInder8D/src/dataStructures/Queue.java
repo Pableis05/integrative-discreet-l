@@ -1,9 +1,10 @@
 package dataStructures;
+import execptions.exceptionThisDataStructureIsVoid;
 
-public class Queue <K extends Comparable<K>, V> implements IQueue<K, V>{
+public class Queue < V> implements IQueue< V>{
 
-    public Node<K,V> first;
-    public Node<K,V> last;
+    public Node<V> first;
+    public Node<V> last;
     public int size;
 
     /**The `public Queue()` is a constructor for the `Queue` class. It initializes the `first` and
@@ -33,7 +34,8 @@ public class Queue <K extends Comparable<K>, V> implements IQueue<K, V>{
      * added to the linked list.
      */
     @Override
-    public boolean offer(Node<K,V> value){
+    public boolean offer(V Value){
+        Node<V> value=new Node<>(Value);
         boolean added=false;
         if(isEmpty()){
             first=value;
@@ -57,13 +59,16 @@ public class Queue <K extends Comparable<K>, V> implements IQueue<K, V>{
      * 
      * @return The method is returning the value of the first element in the linked list.
      */
-    public V poll(){
+    public V poll() throws exceptionThisDataStructureIsVoid {
         V value=null;
         if(!isEmpty()){
             value=first.getValue();
             first=first.getNext();
-            first.setPrev(null);
+            if(first!=null)
+                first.setPrev(null);
             size--;
+        }else{
+            throw new exceptionThisDataStructureIsVoid();
         }
         return value;
     }
@@ -75,14 +80,15 @@ public class Queue <K extends Comparable<K>, V> implements IQueue<K, V>{
      * @return The method is returning the value of the first element in the data structure.
      */
     @Override
-    public V front(){
+    public V front() throws exceptionThisDataStructureIsVoid {
         V value=null;
         if(!isEmpty()){
             value=first.getValue();
+        }else{
+            throw new exceptionThisDataStructureIsVoid();
         }
         return value;
     }
-
     /**
      * The function returns the size of an object.
      * 
@@ -91,5 +97,9 @@ public class Queue <K extends Comparable<K>, V> implements IQueue<K, V>{
     public int size(){
         return size;
     }
+
+
+
+
 
 }

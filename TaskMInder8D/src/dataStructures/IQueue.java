@@ -1,9 +1,14 @@
 package dataStructures;
 
-public interface IQueue <K extends Comparable<K>,V>{
+import execptions.exceptionThisDataStructureIsVoid;
+
+public interface IQueue <V>{
+
     public int size();
     public boolean isEmpty();
-    public boolean offer(Node<K,V> value);
-    public V poll();
-    public V front();
+    public boolean offer(V value);
+    public V poll() throws exceptionThisDataStructureIsVoid;
+    public V front() throws exceptionThisDataStructureIsVoid;
+
+    
 }

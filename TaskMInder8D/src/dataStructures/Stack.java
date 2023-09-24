@@ -1,9 +1,8 @@
 package dataStructures;
 
-public class Stack <K extends Comparable<K>, V> implements IStack<K, V> {
+public class Stack <V> implements IStack<V> {
 
-
-    private Node<K,V> head;
+    private Node<V> head;
     private int size;
 
     /**  The `public Stack()` constructor is initializing the `head` variable to `null` and the `size`
@@ -29,7 +28,7 @@ public class Stack <K extends Comparable<K>, V> implements IStack<K, V> {
      * @param value The value to be pushed onto the stack. It is of type Node<K,V>, where K is the key
      * type and V is the value type.
      */
-    public void push(Node<K,V> value){
+    public void push(Node<V> value){
         if(isEmpty()){
             head=value;
             size++;
