@@ -1,5 +1,7 @@
 package dataStructures;
 
+import execptions.exceptionThisDataStructureIsVoid;
+
 public class Stack <V> implements IStack<V> {
 
     private Node<V> head;
@@ -25,20 +27,24 @@ public class Stack <V> implements IStack<V> {
     /**
      * The push function adds a new node to the beginning of a linked list.
      * 
-     * @param value The value to be pushed onto the stack. It is of type Node<K,V>, where K is the key
+     * @param Value The value to be pushed onto the stack. It is of type Node<K,V>, where K is the key
      * type and V is the value type.
      */
-    public void push(Node<V> value){
+    public boolean push(V Value){
+        boolean added=false;
+        Node<V> value=new Node<>(Value);
         if(isEmpty()){
             head=value;
             size++;
-            
+            added=true;
         }else{
             value.setNext(head);
             head=value;
             size++;
+            added=true;
             
         }
+        return added;
     }
 
     /**
@@ -46,7 +52,10 @@ public class Stack <V> implements IStack<V> {
      * 
      * @return The method is returning the value of the head node in the linked list.
      */
-    public V top(){
+    public V top() throws exceptionThisDataStructureIsVoid {
+        if(head==null){
+            throw new exceptionThisDataStructureIsVoid();
+        }
         return head.getValue();
 
     }
@@ -57,13 +66,17 @@ public class Stack <V> implements IStack<V> {
      * @return The method is returning the value of the element that is being removed from the head of
      * the linked list.
      */
-    public V pop(){
+    public V pop() throws exceptionThisDataStructureIsVoid{
         V value=null;
-        if(!isEmpty()){
+        if(!isEmpty() ){
+            size--;
             value=head.getValue();
             head=head.getNext();
-            head.setPrev(null);
-            size--;
+            if(head!=null)
+                head.setPrev(null);
+        }
+        else{
+            throw new exceptionThisDataStructureIsVoid();
         }
         return value;
     }
