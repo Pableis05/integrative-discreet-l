@@ -1,7 +1,7 @@
 package dataStructures;
-import  execptions.exceptionObjectAlredyExistWithThatKey;
-import execptions.exceptionThisDataStructureIsVoid;
-import execptions.exceptionTheObjectDoesntExist;
+import  exceptions.exceptionObjectAlredyExistWithThatKey;
+import exceptions.exceptionThisDataStructureIsVoid;
+import exceptions.exceptionTheObjectDoesntExist;
 public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V> {
 
     private   NodeHash<K,V>[] table;

@@ -1,5 +1,5 @@
 package dataStructures;
-import execptions.exceptionThisDataStructureIsVoid;
+import exceptions.exceptionThisDataStructureIsVoid;
 
 public class Queue < V> implements IQueue< V>{
 

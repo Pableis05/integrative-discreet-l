@@ -1,6 +1,6 @@
 package dataStructures;
 
-import execptions.exceptionThisDataStructureIsVoid;
+import exceptions.exceptionThisDataStructureIsVoid;
 
 public class Stack <V> implements IStack<V> {
 

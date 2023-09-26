@@ -2,7 +2,7 @@ package test.dataStructureTest;
 import dataStructures.Queue;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import execptions.exceptionThisDataStructureIsVoid;
+import exceptions.exceptionThisDataStructureIsVoid;
 
 public class QueueTest {
 

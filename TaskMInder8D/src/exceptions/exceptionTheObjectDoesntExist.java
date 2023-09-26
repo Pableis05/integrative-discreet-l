@@ -1,4 +1,4 @@
-package execptions;
+package exceptions;
 
 public class exceptionTheObjectDoesntExist extends Exception{
     public exceptionTheObjectDoesntExist(String key){

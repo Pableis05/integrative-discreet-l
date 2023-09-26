@@ -1,4 +1,4 @@
-package execptions;
+package exceptions;
 
 public class exceptionThisDataStructureIsVoid extends Exception{
 

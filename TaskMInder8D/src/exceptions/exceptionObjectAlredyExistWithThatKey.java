@@ -1,4 +1,4 @@
-package execptions;
+package exceptions;
 
 public class exceptionObjectAlredyExistWithThatKey extends Exception{
     public exceptionObjectAlredyExistWithThatKey(String ObjectValue, String key){
