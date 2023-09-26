@@ -1,8 +1,8 @@
 package test.dataStructureTest;
 import dataStructures.HashTable;
-import execptions.exceptionObjectAlredyExistWithThatKey;
-import execptions.exceptionTheObjectDoesntExist;
-import execptions.exceptionThisDataStructureIsVoid;
+import exceptions.exceptionObjectAlredyExistWithThatKey;
+import exceptions.exceptionTheObjectDoesntExist;
+import exceptions.exceptionThisDataStructureIsVoid;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

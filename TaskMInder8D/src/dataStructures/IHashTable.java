@@ -1,8 +1,8 @@
 package dataStructures;
 
-import execptions.exceptionObjectAlredyExistWithThatKey;
-import execptions.exceptionTheObjectDoesntExist;
-import execptions.exceptionThisDataStructureIsVoid;
+import exceptions.exceptionObjectAlredyExistWithThatKey;
+import exceptions.exceptionTheObjectDoesntExist;
+import exceptions.exceptionThisDataStructureIsVoid;
 
 public interface IHashTable<K extends Comparable<K>,V> {
 
@@ -10,6 +10,5 @@ public interface IHashTable<K extends Comparable<K>,V> {
     public boolean add(K key, V value) throws exceptionObjectAlredyExistWithThatKey;
     public V search(K key) throws exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist;
     public boolean remove(K key) throws exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist;
-
 
 }
