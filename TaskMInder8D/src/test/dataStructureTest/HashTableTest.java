@@ -15,7 +15,7 @@ public class HashTableTest {
     }
 
     private void setupStage2()throws exceptionObjectAlredyExistWithThatKey {
-        {
+
             hashTable = new HashTable<>(10);
             hashTable.add(0.3, "Hola");
             hashTable.add(0.4, "Juan");
@@ -24,7 +24,7 @@ public class HashTableTest {
             hashTable.add(4.5, ":D");
             hashTable.add(6.5, "Vaina");
             hashTable.add(8.5, "TQM");
-        }
+
     }
 
         @Test
