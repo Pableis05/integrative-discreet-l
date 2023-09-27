@@ -73,4 +73,20 @@ public class NodeHash<K extends Comparable<K>,V>  extends Node<V>{
     public void setPrev(NodeHash<K, V> prev) {
         this.prev = prev;
     }
+
+
+    public V getValue() {
+        return super.getValue();
+    }
+
+    public K getKeyHash() {
+        return key;
+    }
+
+    public void setValue(V value) {
+        super.setValue(value);
+    }
+
+
+
 }

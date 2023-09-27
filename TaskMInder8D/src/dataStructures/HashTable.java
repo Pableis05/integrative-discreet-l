@@ -6,7 +6,7 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V> 
 
     private   NodeHash<K,V>[] table;
     private   int size;
-  
+    private String changeMessage;
     public HashTable(int capacity){
         capacityHashTable(capacity);
         size=0;
@@ -184,5 +184,36 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V> 
     public boolean isEmpty(){
         return size==0;
     }
+
+    public NodeHash<K, V>[] getArr() {
+        return table;
+    }
+
+    public void setArr(NodeHash<K, V>[] arr) {
+        this.table = arr;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public void setChangeMessage(String changeMessage) {
+        this.changeMessage = changeMessage;
+    }
+
+    public String getChangeMessage() {
+        return changeMessage;
+    }
+
+    public void modify(K key, V value) throws exceptionTheObjectDoesntExist {
+        NodeHash<K, V> nodeHash = getNodeHash(key);
+        if (nodeHash != null) {
+            nodeHash.setValue(value);
+        } else {
+            throw new exceptionTheObjectDoesntExist(key+"");
+        }
+    }
+
+
 
 }
