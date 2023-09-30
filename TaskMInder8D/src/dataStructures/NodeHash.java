@@ -1,6 +1,6 @@
 package dataStructures;
 
-public class NodeHash<K extends Comparable<K>,V>  extends Node<V>{
+public class NodeHash<K extends Comparable<K>,V>  extends Node<V> implements  Cloneable{
     private K key;
     private NodeHash<K,V> next;
     private NodeHash<K,V> prev;

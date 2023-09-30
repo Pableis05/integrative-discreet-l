@@ -2,7 +2,7 @@ package model;
 
 import dataStructures.HashTable;
 import dataStructures.Heap;
-import dataStructures.NodeHash;
+
 import dataStructures.Queue;
 import exceptions.*;
 import java.util.List;
@@ -16,6 +16,17 @@ public class Agenda{
     private Heap<Task> priorityTasks;
     private int count;
 
+    public void setTasks(HashTable<Integer, Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public void setNonPriorityTasks(Queue<Task> nonPriorityTasks) {
+        this.nonPriorityTasks = nonPriorityTasks;
+    }
+
+    public void setPriorityTasks(Heap<Task> priorityTasks) {
+        this.priorityTasks = priorityTasks;
+    }
 
     public Agenda(){
         tasks = new HashTable<Integer, Task>(100);
@@ -60,7 +71,7 @@ public class Agenda{
         }
     }
 
-    public boolean modifyTask(Integer id, String title, String description, String date, Integer priority){
+    public boolean modifyTask(Integer id, String title, String description, String date, Integer priority) throws exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist{
         try {
             Task task = searchTask(id);
             List<String> strings = List.of(title, description, date, priority+"");
@@ -77,26 +88,19 @@ public class Agenda{
         }
     }
 
-    public Task searchTask(Integer id){
-        for (NodeHash<Integer, Task> node : tasks.getArr()) {
-            if (node != null && node.getKey().equals(id)) {
-                return node.getValue();
-            }
-        }
-        return null;
+    public Task searchTask(Integer id) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
+        Task task=tasks.search(id);
+        return task;
     }
 
-    public List<String> getTaskStrings(Integer id){
+
+    public List<String> getTaskStrings(Integer id) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
         return searchTask(id).getStrings();
     }
 
     public String showTasks() {
         String message = "";
-        for (NodeHash<Integer, Task> node : tasks.getArr()) {
-            if (node != null) {
-                message += node.getValue().toString() + "\n";
-            }
-        }
+        message=tasks.toString();
         return message;
     }
 
@@ -117,12 +121,13 @@ public class Agenda{
         return "Agenda{" + "tasks=" + tasks + ", nonPriorityTasks=" + nonPriorityTasks + ", priorityTasks=" + priorityTasks + ", count=" + count + '}';
     }
 
-    public NodeHash<Integer, Task>[] getArr() {
-        return tasks.getArr();
-    }
-
-    public void setArr(NodeHash<Integer, Task>[] arr) {
-        this.tasks.setArr(arr);
+    public Agenda clone(){
+        Agenda clone = new Agenda();
+        clone.setCounter(count);
+        clone.setTasks(tasks.clone());
+        clone.setNonPriorityTasks(nonPriorityTasks.clone());
+        clone.setPriorityTasks(priorityTasks.clone()); ;
+        return clone;
     }
 
 }

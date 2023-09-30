@@ -2,8 +2,7 @@ package dataStructures;
 import  exceptions.exceptionObjectAlredyExistWithThatKey;
 import exceptions.exceptionThisDataStructureIsVoid;
 import exceptions.exceptionTheObjectDoesntExist;
-public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V> {
-
+public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V>, Cloneable{
     private   NodeHash<K,V>[] table;
     private   int size;
     private String changeMessage;
@@ -11,7 +10,6 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V> 
         capacityHashTable(capacity);
         size=0;
     }
-
    /**
     * The hash function takes a key and returns the index where the key should be stored in a hash
     * table.
@@ -54,7 +52,6 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V> 
 
             boolean added = false;
 
-
             int hash = hash(key);
             NodeHash<K, V> newNodeHash = new NodeHash<>(key, value);
             if (table[hash] == null) {
@@ -67,6 +64,7 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V> 
                     if (current.getKey().equals(key)) {
                         throw new exceptionObjectAlredyExistWithThatKey(current.getValue()+"", key+"");
                     }
+                    
                     current = current.getNext();
                 }
                 current.setNext(newNodeHash);
@@ -74,9 +72,7 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V> 
                 size++;
                 added = true;
             }
-
         return added;
-
     }
 
     /**
@@ -93,6 +89,7 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V> 
         if(getNodeHash(key)==null){
             throw new exceptionTheObjectDoesntExist(key+"");
         }
+
         value = getNodeHash(key).getValue();
 
 
@@ -111,6 +108,7 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V> 
         if (key == null) {
             nodeHash = null;
         }
+
         int hash = hash(key);
         if (table[hash] == null) {
             nodeHash = null;
@@ -185,17 +183,6 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V> 
         return size==0;
     }
 
-    public NodeHash<K, V>[] getArr() {
-        return table;
-    }
-
-    public void setArr(NodeHash<K, V>[] arr) {
-        this.table = arr;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
 
     public void setChangeMessage(String changeMessage) {
         this.changeMessage = changeMessage;
@@ -214,6 +201,40 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V> 
         }
     }
 
+    @Override
+    public HashTable<K,V> clone(){
+        HashTable<K,V> clone = new HashTable<>(table.length);
+        NodeHash<K,V> current = null;
+
+        for (int i = 0; i < table.length; i++) {
+            if(  this.table[i]!=null){
+                current=this.table[i];
+                while(current!=null){
+                    try {
+                        clone.add(current.getKey(), current.getValue());
+                    } catch (exceptionObjectAlredyExistWithThatKey e) {
+                        e.printStackTrace();
+                    }
+                    current=current.getNext();
+                }
+            }
+        }
+        return clone;
+    }
+
+    public String toString(){
+        String message = "";
+        for (int i = 0; i < table.length; i++) {
+            if(  this.table[i]!=null){
+                NodeHash<K,V> current = this.table[i];
+                while(current!=null){
+                    message+=current.getValue().toString()+"\n";
+                    current=current.getNext();
+                }
+            }
+        }
+        return message;
+    }
 
 
 }

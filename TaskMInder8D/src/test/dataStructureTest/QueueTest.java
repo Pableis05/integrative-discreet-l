@@ -1,4 +1,5 @@
 package test.dataStructureTest;
+
 import dataStructures.Queue;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -51,8 +52,14 @@ public class QueueTest {
         assertThrows("Exception the list is void",exceptionThisDataStructureIsVoid.class, () ->
                 queue.front()
         );
-    }
 
+        try{
+           queue.front();
+           fail();
+        }catch (Exception e){
+            assertNotNull(e);
+        }
+    }
     @Test
     public void returnFrontValueInQueue() throws exceptionThisDataStructureIsVoid {
         setupStage4();
@@ -74,6 +81,4 @@ public class QueueTest {
         int size=queue.size();
         assertEquals(4,size);
     }
-
-
 }

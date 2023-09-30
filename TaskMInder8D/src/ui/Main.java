@@ -1,6 +1,9 @@
 package ui;
 
 import java.util.Scanner;
+
+import exceptions.exceptionTheObjectDoesntExist;
+import exceptions.exceptionThisDataStructureIsVoid;
 import model.ControllerAgenda;
 public class Main {
 
@@ -12,12 +15,12 @@ public class Main {
         controllerAgenda = new ControllerAgenda();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
         Main m = new Main();
         m.menu();
     }
 
-    public void menu() {
+    public void menu() throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
         int option = 0;
         do {
             System.out.println("1. Add a task");
@@ -68,7 +71,7 @@ public class Main {
         controllerAgenda.addTask(title, description, date, priority);
     }
 
-    public void removeTask() {
+    public void removeTask() throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
 
         System.out.println("Enter the id of the task");
         int id = sc.nextInt();
@@ -77,7 +80,7 @@ public class Main {
 
     }
 
-    public void modifyTask() {
+    public void modifyTask() throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
         System.out.println("Enter the id of the task");
         int id = sc.nextInt();
         sc.nextLine();
@@ -116,8 +119,12 @@ public class Main {
             }
 
         }while (option != 0);
+        try{
+            controllerAgenda.modifyTask(id, title, description, date, priority);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
-        controllerAgenda.modifyTask(id, title, description, date, priority);
 
     }
 

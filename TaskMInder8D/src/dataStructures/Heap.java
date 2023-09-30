@@ -2,7 +2,7 @@ package dataStructures;
 
 import java.util.ArrayList;
 
-public class Heap<V> implements IPriorityQueue<V>{
+public class Heap<V> implements IPriorityQueue<V>, Cloneable{
 
     private ArrayList<NodePriorityQueue<V>> arr;
 
@@ -16,6 +16,7 @@ public class Heap<V> implements IPriorityQueue<V>{
     public void insert(int priority, V node) {
         arr.add(new NodePriorityQueue(priority, node));
         buildMaxHeapify();
+
     }
 
     public void maxHeapify(int index) {
@@ -86,5 +87,14 @@ public class Heap<V> implements IPriorityQueue<V>{
         }else {
             return null;
         }
+    }
+    @Override
+    public Heap<V> clone() {
+        Heap<V> clone = new Heap<>();
+        for (int i = 0; i < arr.size(); i++) {
+            NodePriorityQueue<V> node = new NodePriorityQueue<>(arr.get(i).getPriority(), arr.get(i).getNode());
+            clone.arr.add(node);
+        }
+        return clone;
     }
 }

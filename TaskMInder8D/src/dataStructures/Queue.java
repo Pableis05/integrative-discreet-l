@@ -1,7 +1,7 @@
 package dataStructures;
 import exceptions.exceptionThisDataStructureIsVoid;
 
-public class Queue < V> implements IQueue< V>{
+public class Queue < V> implements IQueue< V>, Cloneable{
 
     public Node<V> first;
     public Node<V> last;
@@ -97,7 +97,17 @@ public class Queue < V> implements IQueue< V>{
     public int size(){
         return size;
     }
+    @Override
+    public Queue<V> clone(){
+        Queue<V> clone = new Queue<>();
+        Node<V> current = first;
 
+        while(current != null){
+            clone.offer(current.getValue());
+            current = current.getNext();
+        }
+        return clone;
+    }
 
 
 

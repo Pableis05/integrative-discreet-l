@@ -8,7 +8,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-
 public class HashTableTest {
     private HashTable<Double,String > hashTable;
 
@@ -17,8 +16,8 @@ public class HashTableTest {
     }
 
     private void setupStage2()throws exceptionObjectAlredyExistWithThatKey {
+         hashTable = new HashTable<>(10);
 
-            hashTable = new HashTable<>(10);
             hashTable.add(0.3, "Hola");
             hashTable.add(0.4, "Juan");
             hashTable.add(2.0, "Monitor");
@@ -68,8 +67,8 @@ public class HashTableTest {
     @Test
     public void searchObjectInList() throws exceptionThisDataStructureIsVoid, exceptionObjectAlredyExistWithThatKey, exceptionTheObjectDoesntExist{
         setupStage2();
-        String value = hashTable.search(0.3);
-        assertEquals("Hola",value);
+        String value = hashTable.search(0.4);
+        assertEquals("Juan",value);
     }
     @Test
     public void searchObjectInListWithCollision() throws exceptionThisDataStructureIsVoid, exceptionObjectAlredyExistWithThatKey, exceptionTheObjectDoesntExist {
@@ -131,5 +130,39 @@ public class HashTableTest {
 
         assertTrue(hashTable.isEmpty());
     }
+
+    @Test
+    public void currectlyClone() throws exceptionObjectAlredyExistWithThatKey, exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist {
+        setupStage2();
+        HashTable<Double,String> clone = hashTable.clone();
+        assertNotEquals("The reference to the object must be different: ",hashTable,clone);
+        assertEquals("The size of the object must be the same: ",hashTable.getSize(),clone.getSize());
+        assertEquals("The keys must return the same elements",hashTable.search(0.3),clone.search(0.3));
+        assertEquals("The keys must return the same elements",hashTable.search(0.4),clone.search(0.4));
+        assertEquals("The keys must return the same elements",hashTable.search(2.0),clone.search(2.0));
+        assertEquals("The keys must return the same elements",hashTable.search(2.4),clone.search(2.4));
+        assertEquals("The keys must return the same elements",hashTable.search(4.5),clone.search(4.5));
+        assertEquals("The keys must return the same elements",hashTable.search(6.5),clone.search(6.5));
+        assertEquals("The keys must return the same elements",hashTable.search(8.5),clone.search(8.5));
+    }
+
+    @Test
+    public void differenteObjectReferenceOnClonedNodes() throws exceptionObjectAlredyExistWithThatKey, exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist{
+        setupStage2();
+        System.out.println("Este medoto se comprueba mediante la eliminacion de nodos, es decir si se elimina el nodo original el clonado debe seguir existiendo ya que no apunta al mismo objeto porque son idependientes");
+        HashTable<Double,String> clone = hashTable.clone();
+        hashTable.remove(0.3);
+        assertThrows("Exception object doesnt exist",exceptionTheObjectDoesntExist.class, () ->
+                hashTable.search(0.3)
+        );
+        assertEquals("The key must return the same elements",clone.search(0.3),"Hola");
+        clone.add(-30.0,"Hi my bro");
+        assertThrows("Exception object doesnt exist",exceptionTheObjectDoesntExist.class, () ->
+                hashTable.search(-30.0)
+        );
+
+    }
+
+
 
 }

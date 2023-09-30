@@ -1,5 +1,7 @@
 package model;
-import dataStructures.NodeHash;
+
+import exceptions.exceptionTheObjectDoesntExist;
+import exceptions.exceptionThisDataStructureIsVoid;
 
 import java.util.Stack;
 
@@ -21,18 +23,18 @@ public class ControllerAgenda {
         saveState("Add new task: " + title);
     }
 
-    public void removeTask(Integer id){
+    public void removeTask(Integer id) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
         saveState("remove task by title: " + searchTask(id).getStrings().get(0));
         agenda.removeTask(id);
     }
 
 
-    public void modifyTask(Integer id, String title, String description, String date, Integer priority){
+    public void modifyTask(Integer id, String title, String description, String date, Integer priority) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
         agenda.modifyTask(id, title, description, date, priority);
         saveState("modify task by title: " + title);
     }
 
-    public Task searchTask(Integer id){
+    public Task searchTask(Integer id)  throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
         return agenda.searchTask(id);
     }
 
@@ -41,9 +43,7 @@ public class ControllerAgenda {
     }
 
     private void saveState(String changeMessage) {
-        Agenda copyOfAgenda = new Agenda();
-        copyOfAgenda.getTasks().setArr(new NodeHash[agenda.getTasks().getArr().length]);
-        copyOfAgenda.getTasks().setSize(agenda.getTasks().getSize());
+        Agenda copyOfAgenda = agenda.clone();
         copyOfAgenda.setCounter(agenda.getCount());
         copyOfAgenda.getTasks().setChangeMessage(changeMessage);
         undoStack.push(copyOfAgenda);
