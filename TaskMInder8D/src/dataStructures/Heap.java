@@ -88,12 +88,12 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
             return null;
         }
     }
+
     @Override
     public Heap<V> clone() {
         Heap<V> clone = new Heap<>();
-        for (int i = 0; i < arr.size(); i++) {
-            NodePriorityQueue<V> node = new NodePriorityQueue<>(arr.get(i).getPriority(), arr.get(i).getNode());
-            clone.arr.add(node);
+        for (int i = 1; i < arr.size(); i++) {
+            clone.insert(arr.get(i).getPriority(), arr.get(i).getNode());
         }
         return clone;
     }

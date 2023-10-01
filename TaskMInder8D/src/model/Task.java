@@ -5,7 +5,6 @@ public class Task   {
     private int id;
 
     private List<String> strings;
-
     public Task(int id, List<String> strings) {
         this.id = id;
         this.strings = strings;
