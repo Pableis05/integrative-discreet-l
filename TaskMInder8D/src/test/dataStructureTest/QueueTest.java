@@ -33,11 +33,16 @@ public class QueueTest {
         assertTrue(added);
     }
     @Test
-    public void removeValueInQueueVoid() throws exceptionThisDataStructureIsVoid {
+    public void removeValueInQueueVoid(){
         setupStage3();
-        assertThrows("Exception the list is void",exceptionThisDataStructureIsVoid.class, () ->
-                queue.poll()
-        );
+        try{
+            queue.poll();
+            fail();
+        }
+        catch (exceptionThisDataStructureIsVoid e){
+            assertNotNull(e);
+        }
+
     }
     @Test
     public void removeFrontValueInQueue() throws exceptionThisDataStructureIsVoid {
@@ -47,16 +52,13 @@ public class QueueTest {
         assertNotEquals(front,queue.front());
     }
     @Test
-    public void frontValueInQueueVoid() throws exceptionThisDataStructureIsVoid {
+    public void frontValueInQueueVoid()  {
         setupStage3();
-        assertThrows("Exception the list is void",exceptionThisDataStructureIsVoid.class, () ->
-                queue.front()
-        );
 
         try{
            queue.front();
            fail();
-        }catch (Exception e){
+        }catch (exceptionThisDataStructureIsVoid e){
             assertNotNull(e);
         }
     }
@@ -76,7 +78,7 @@ public class QueueTest {
         assertTrue(queue.isEmpty());
     }
     @Test
-    public void QueuesSizeSameAsValuesAdded() throws exceptionThisDataStructureIsVoid {
+    public void QueuesSizeSameAsValuesAdded() {
         setupStage4();
         int size=queue.size();
         assertEquals(4,size);

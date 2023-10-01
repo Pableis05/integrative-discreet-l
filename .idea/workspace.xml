@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6a69ed73-ee66-4276-a5fc-8357be774c6e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/HashTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/HashTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/model/ControllerAgenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/model/ControllerAgenda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/HashTableTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/HashTableTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/QueueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/QueueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/StackTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/StackTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2W6AYMkoJ85B0Q3sxjcvxxu9rr4" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore_missing_gitignore": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="JUnit.HashTableTest">
+    <configuration name="HashTableTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="integrative-discreet-l" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.dataStructureTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.dataStructureTest" />
+      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HashTableTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HashTableTest.differenteObjectReferenceOnClonedNodes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="integrative-discreet-l" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.dataStructureTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.dataStructureTest" />
+      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HashTableTest" />
+      <option name="METHOD_NAME" value="differenteObjectReferenceOnClonedNodes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HashTableTest.searchObjectInListVoid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="integrative-discreet-l" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.dataStructureTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.dataStructureTest" />
+      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HashTableTest" />
+      <option name="METHOD_NAME" value="searchObjectInListVoid" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QueueTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="integrative-discreet-l" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.dataStructureTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.dataStructureTest" />
+      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.QueueTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StackTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="integrative-discreet-l" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.dataStructureTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.dataStructureTest" />
+      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.StackTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.HashTableTest" />
+        <item itemvalue="JUnit.HashTableTest.differenteObjectReferenceOnClonedNodes" />
+        <item itemvalue="JUnit.HashTableTest.searchObjectInListVoid" />
+        <item itemvalue="JUnit.StackTest" />
+        <item itemvalue="JUnit.QueueTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6a69ed73-ee66-4276-a5fc-8357be774c6e" name="Changes" comment="" />
+      <created>1696042709385</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696042709385</updated>
+      <workItem from="1696042713779" duration="637000" />
+      <workItem from="1696091267152" duration="76000" />
+      <workItem from="1696130327572" duration="1506000" />
+      <workItem from="1696168517073" duration="1264000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/HashTableTest.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

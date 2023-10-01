@@ -36,11 +36,15 @@ public class StackTest {
     }
 
     @Test
-    public void removeValueInStackVoid() throws exceptionThisDataStructureIsVoid {
+    public void removeValueInStackVoid()  {
         setupStage5();
-        assertThrows("Exception the list is void",exceptionThisDataStructureIsVoid.class, () ->
-                stack.pop()
-        );
+        try {
+            stack.pop();
+            fail();
+        }catch (exceptionThisDataStructureIsVoid e) {
+            assertNotNull(e);
+        }
+
     }
 
     @Test
@@ -52,11 +56,14 @@ public class StackTest {
     }
 
     @Test
-    public void topValueInStackVoid() throws exceptionThisDataStructureIsVoid {
+    public void topValueInStackVoid()  {
         setupStage5();
-        assertThrows("Exception the list is void",exceptionThisDataStructureIsVoid.class, () ->
-                stack.top()
-        );
+        try {
+            stack.top();
+            fail();
+        }catch (exceptionThisDataStructureIsVoid e) {
+            assertNotNull(e);
+        }
     }
 
     @Test

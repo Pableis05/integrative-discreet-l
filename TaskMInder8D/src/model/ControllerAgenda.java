@@ -2,13 +2,11 @@ package model;
 
 import exceptions.exceptionTheObjectDoesntExist;
 import exceptions.exceptionThisDataStructureIsVoid;
-
 import java.util.Stack;
 
 public class ControllerAgenda {
 
     private Agenda agenda;
-
     private  Stack<Agenda> undoStack;
 
     public ControllerAgenda(){
@@ -63,6 +61,5 @@ public class ControllerAgenda {
     public String getChangeMessage() {
         return agenda.getTasks().getChangeMessage();
     }
-
 
 }
