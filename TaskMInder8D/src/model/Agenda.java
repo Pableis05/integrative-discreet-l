@@ -7,7 +7,7 @@ import dataStructures.Queue;
 import exceptions.*;
 import java.util.List;
 
-public class Agenda{
+public class Agenda implements Cloneable{
 
     private HashTable<Integer, Task> tasks;
 
@@ -129,5 +129,6 @@ public class Agenda{
         clone.setPriorityTasks(priorityTasks.clone()); ;
         return clone;
     }
+
 
 }

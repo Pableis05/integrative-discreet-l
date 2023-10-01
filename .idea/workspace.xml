@@ -5,16 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a69ed73-ee66-4276-a5fc-8357be774c6e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/HashTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/HashTable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/IClonable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/NodePriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/NodePriorityQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/Stack.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/Stack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/model/Agenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/model/Agenda.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/model/ControllerAgenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/model/ControllerAgenda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/model/Task.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/HashTableTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/HashTableTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/QueueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/QueueTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/StackTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/StackTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/integrative-discreet-l/dataStructures/NodePriorityQueue.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/integrative-discreet-l/dataStructures/NodePriorityQueue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/integrative-discreet-l/model/Agenda.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/integrative-discreet-l/model/Agenda.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/integrative-discreet-l/model/ControllerAgenda.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/integrative-discreet-l/model/ControllerAgenda.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/integrative-discreet-l/test/dataStructureTest/QueueTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/integrative-discreet-l/test/dataStructureTest/QueueTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/integrative-discreet-l/test/dataStructureTest/StackTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/integrative-discreet-l/test/dataStructureTest/StackTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,11 +59,12 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.HashTableTest">
-    <configuration name="HashTableTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.StackTest.CurrectlyClone">
+    <configuration name="HashTableTest.currectlyClone" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="integrative-discreet-l" />
       <extension name="coverage">
         <pattern>
@@ -54,38 +74,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="test.dataStructureTest" />
       <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HashTableTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HashTableTest.differenteObjectReferenceOnClonedNodes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="integrative-discreet-l" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.dataStructureTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.dataStructureTest" />
-      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HashTableTest" />
-      <option name="METHOD_NAME" value="differenteObjectReferenceOnClonedNodes" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HashTableTest.searchObjectInListVoid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="integrative-discreet-l" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.dataStructureTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.dataStructureTest" />
-      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HashTableTest" />
-      <option name="METHOD_NAME" value="searchObjectInListVoid" />
+      <option name="METHOD_NAME" value="currectlyClone" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -106,7 +95,39 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StackTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="QueueTest.CurrectlyClone" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="integrative-discreet-l" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.dataStructureTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.dataStructureTest" />
+      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.QueueTest" />
+      <option name="METHOD_NAME" value="CurrectlyClone" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QueueTest.differenteObjectReferenceOnClonedNodes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="integrative-discreet-l" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.dataStructureTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.dataStructureTest" />
+      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.QueueTest" />
+      <option name="METHOD_NAME" value="differenteObjectReferenceOnClonedNodes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StackTest.CurrectlyClone" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="integrative-discreet-l" />
       <extension name="coverage">
         <pattern>
@@ -116,18 +137,19 @@
       </extension>
       <option name="PACKAGE_NAME" value="test.dataStructureTest" />
       <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.StackTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="CurrectlyClone" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.HashTableTest" />
-        <item itemvalue="JUnit.HashTableTest.differenteObjectReferenceOnClonedNodes" />
-        <item itemvalue="JUnit.HashTableTest.searchObjectInListVoid" />
-        <item itemvalue="JUnit.StackTest" />
+        <item itemvalue="JUnit.StackTest.CurrectlyClone" />
         <item itemvalue="JUnit.QueueTest" />
+        <item itemvalue="JUnit.QueueTest.differenteObjectReferenceOnClonedNodes" />
+        <item itemvalue="JUnit.QueueTest.CurrectlyClone" />
+        <item itemvalue="JUnit.HashTableTest.currectlyClone" />
       </list>
     </recent_temporary>
   </component>
@@ -142,7 +164,7 @@
       <workItem from="1696042713779" duration="637000" />
       <workItem from="1696091267152" duration="76000" />
       <workItem from="1696130327572" duration="1506000" />
-      <workItem from="1696168517073" duration="1264000" />
+      <workItem from="1696168517073" duration="6063000" />
     </task>
     <servers />
   </component>

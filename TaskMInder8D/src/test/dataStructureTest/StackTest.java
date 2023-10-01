@@ -91,6 +91,21 @@ public class StackTest {
 
     }
 
+    @Test
+    public void CurrectlyClone(){
+        setupStage6();
+        Stack<String> clone = stack.clone();
+        assertNotEquals("The reference to the object must be different: ",stack,clone);
+        assertEquals("The size of the object must be the same: ",stack.size(),clone.size());
+        try {
+            while (!stack.isEmpty())
+                assertEquals("The values of the object mush be the same: ",stack.pop(),clone.pop());
+        }catch (exceptionThisDataStructureIsVoid e) {
+            throw new RuntimeException(e);
+        }
+        assertTrue("The object must be empty: ",stack.isEmpty());
+    }
+
 
 
 

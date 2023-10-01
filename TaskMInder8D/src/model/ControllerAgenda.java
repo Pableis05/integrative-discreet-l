@@ -53,11 +53,9 @@ public class ControllerAgenda {
             agenda = undoStack.peek();
         }
     }
-
     public Agenda getAgenda() {
         return agenda;
     }
-
     public String getChangeMessage() {
         return agenda.getTasks().getChangeMessage();
     }

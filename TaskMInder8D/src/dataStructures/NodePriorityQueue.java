@@ -1,11 +1,8 @@
 package dataStructures;
 
 public class NodePriorityQueue <T> {
-
     private int priority;
     private T node;
-
-
     public NodePriorityQueue(int priority, T node){
         this.priority = priority;
         this.node = node;
@@ -22,7 +19,6 @@ public class NodePriorityQueue <T> {
     public void setPriority(int priority){
         this.priority = priority;
     }
-
     public void setNode(T node){
         this.node = node;
     }

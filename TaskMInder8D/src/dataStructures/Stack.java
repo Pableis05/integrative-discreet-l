@@ -2,7 +2,7 @@ package dataStructures;
 
 import exceptions.exceptionThisDataStructureIsVoid;
 
-public class Stack <V> implements IStack<V> {
+public class Stack <V> implements IStack<V>, Cloneable {
 
     private Node<V> head;
     private int size;
@@ -91,4 +91,21 @@ public class Stack <V> implements IStack<V> {
         return size;
     }
 
+    public Stack<V> clone(){
+        Stack<V> clone=new Stack<>();
+        Stack<V> temp=new Stack<>();
+        Node<V> current=head;
+        while(current!=null){
+            temp.push(current.getValue());
+            current=current.getNext();
+        }
+        while(!temp.isEmpty()){
+            try {
+                clone.push(temp.pop());
+            } catch (exceptionThisDataStructureIsVoid e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return clone;
+    }
 }

@@ -68,7 +68,6 @@ public class Node<V> {
     public void setPrev(Node< V> prev) {
         this.prev = prev;
     }
-
 }
 
 

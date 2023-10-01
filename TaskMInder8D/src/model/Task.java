@@ -1,6 +1,6 @@
 package model;
 import java.util.List;
-public class Task  {
+public class Task   {
 
     private int id;
 

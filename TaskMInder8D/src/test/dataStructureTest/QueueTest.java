@@ -70,10 +70,14 @@ public class QueueTest {
     }
 
     @Test
-    public void removeAllValuesInQueueMustBeEmpty() throws exceptionThisDataStructureIsVoid {
+    public void removeAllValuesInQueueMustBeEmpty() {
         setupStage4();
-        while (queue.size()!=0){
-            queue.poll();
+        try {
+            while (queue.size()!=0){
+                queue.poll();
+            }
+        }catch (exceptionThisDataStructureIsVoid e) {
+            throw new RuntimeException(e);
         }
         assertTrue(queue.isEmpty());
     }
@@ -82,5 +86,37 @@ public class QueueTest {
         setupStage4();
         int size=queue.size();
         assertEquals(4,size);
+    }
+
+    @Test
+    public void CurrectlyClone(){
+        setupStage4();
+        Queue<String> clone=queue.clone();
+        assertNotEquals("The reference to the object must be different: ",queue,clone);
+        assertEquals("The size of the object must be the same: ",queue.size(),clone.size());
+        try {
+            while (!queue.isEmpty()){
+                assertEquals("The value of the object must be the same: ",queue.poll(),clone.poll());
+            }
+        }catch (exceptionThisDataStructureIsVoid e){
+            throw new RuntimeException(e);
+        }
+    }
+    @Test
+    public void differenteObjectReferenceOnClonedNodes() {
+        setupStage4();
+        Queue<String> clone=queue.clone();
+        assertNotEquals("The reference to the object must be different: ",queue,clone);
+       try {
+           queue.poll();
+           clone.offer("AristizabalGod");
+           assertNotEquals("The reference to the object must be different: ",queue.poll(),clone.poll());
+
+       }catch (exceptionThisDataStructureIsVoid e){
+           throw new RuntimeException(e);
+       }
+
+
+
     }
 }
