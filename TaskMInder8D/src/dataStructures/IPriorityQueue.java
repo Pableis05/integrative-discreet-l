@@ -9,13 +9,9 @@ public interface IPriorityQueue<K> {
 
     K search(K node);
 
-    boolean delete(K node);
-
     public String show();
 
     public K showMax();
-
-    public Heap<K> clone();
 
     public void heapSort();
 

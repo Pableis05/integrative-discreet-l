@@ -3,9 +3,9 @@ package model;
 import dataStructures.HashTable;
 import dataStructures.Heap;
 
+import dataStructures.Node;
 import dataStructures.Queue;
 import exceptions.*;
-import java.util.List;
 
 public class Agenda implements Cloneable{
 
@@ -96,10 +96,9 @@ public class Agenda implements Cloneable{
             Task task = searchTask(id);
             tasks.remove(id);
             if (task.getPriority() == 0) {
-
-                nonPriorityTasks.delete(task);
+                removeNonPriorityTask(task);
             }else{
-                priorityTasks.delete(task);
+                removePriorityTask(task);
             }
             return true;
         } catch (exceptionTheObjectDoesntExist e) {
@@ -109,16 +108,66 @@ public class Agenda implements Cloneable{
         }
     }
 
-   /**
-    * This function modifies a task by updating its title, description, date, and priority, and then reorganizes the task in the appropriate data structure based on its priority.
-    * 
-    * @param id The unique identifier of the task that needs to be modified.
-    * @param title The title of the task.
-    * @param description The description parameter is a String that represents the new description for the task.
-    * @param date The "date" parameter is a string representing the date of the task.
-    * @param priority The priority parameter is an Integer that represents the priority level of the task. A priority of 0 indicates that the task is a non-priority task, while any other positive integer represents the priority level of the task.
-    * @return The method is returning a boolean value. If the task with the given id is found and successfully modified, it will return true. If the task with the given id does not exist, it will return false.
-    */
+
+    public boolean removePriorityTask(Task task){
+        Heap<Task> tempHeap = new Heap<>();
+        int sizePriority = priorityTasks.size();
+        while (!priorityTasks.isEmpty()) {
+            Task element = priorityTasks.extractMax();
+            if (!element.equals(task)) {
+                tempHeap.insert(element.getPriority(), element);
+            }
+        }
+
+        if (tempHeap.size() == sizePriority)
+            return false;
+
+
+        while (!tempHeap.isEmpty()) {
+            Task element = tempHeap.extractMax();
+            priorityTasks.insert(element.getPriority(), element);
+        }
+        return true;
+
+    }
+
+    public boolean removeNonPriorityTask(Task task) throws exceptionThisDataStructureIsVoid {
+
+        try {
+            Queue<Task> tempQueue = new Queue<>();
+            while (!nonPriorityTasks.isEmpty()) {
+                Task element = nonPriorityTasks.poll();
+                if (!element.equals(task)) {
+                    tempQueue.offer(element);
+                }
+            }
+
+            if (tempQueue.size() == nonPriorityTasks.size()) {
+                return false;
+            }
+
+            int auxSize = tempQueue.size();
+            for (int i = 0; i < auxSize; i++) {
+                nonPriorityTasks.offer(tempQueue.poll());
+            }
+            return true;
+
+        } catch (exceptionThisDataStructureIsVoid e){
+            return false;
+        }
+
+    }
+
+    /**
+     * This function modifies a task by updating its title, description, date, and priority, and then reorganizes the task in the appropriate data structure based on its priority.
+     *
+     * @param id The unique identifier of the task that needs to be modified.
+     * @param title The title of the task.
+     * @param description The description parameter is a String that represents the new description for the task.
+     * @param date The "date" parameter is a string representing the date of the task.
+     * @param priority The priority parameter is an Integer that represents the priority level of the task. A priority of 0 indicates that the task is a non-priority task, while any other positive integer represents the priority level of the task.
+     * @return The method is returning a boolean value. If the task with the given id is found and successfully modified, it will return true. If the task with the given id does not exist, it will return false.
+     */
     public boolean modifyTask(Integer id, String title, String description, String date, Integer priority) throws exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist{
         try {
             Task task = searchTask(id);
@@ -126,11 +175,9 @@ public class Agenda implements Cloneable{
             tasks.modify(id, newTask);
 
             if (priority == 0) {
-                nonPriorityTasks.offer(newTask);
-                nonPriorityTasks.delete(task);
+                modifyTaskNonPriorityTask(task, newTask);
             }else{
-                priorityTasks.delete(task);
-                priorityTasks.insert(priority, newTask);
+                modifyTaskPriorityTask(task, newTask);
             }
             return true;
         } catch (exceptionTheObjectDoesntExist e) {
@@ -138,9 +185,52 @@ public class Agenda implements Cloneable{
         }
     }
 
+    private boolean modifyTaskPriorityTask(Task task, Task newTask) throws exceptionThisDataStructureIsVoid {
+        Heap<Task> tempHeap = new Heap<>();
+        int sizePriority = priorityTasks.size();
+        while (!priorityTasks.isEmpty()) {
+            Task element = priorityTasks.extractMax();
+            if (!element.equals(task)) {
+                tempHeap.insert(element.getPriority(), element);
+            } else {
+                tempHeap.insert(newTask.getPriority(), newTask);
+            }
+        }
+
+        while (!tempHeap.isEmpty()) {
+            Task element = tempHeap.extractMax();
+            priorityTasks.insert(element.getPriority(), element);
+        }
+        return true;
+
+    }
+
+    private boolean modifyTaskNonPriorityTask(Task task, Task newTask) throws exceptionThisDataStructureIsVoid{
+        try {
+            Queue<Task> tempQueue = new Queue<>();
+            while (!nonPriorityTasks.isEmpty()) {
+                Task element = nonPriorityTasks.poll();
+                if (!element.equals(task)) {
+                    tempQueue.offer(element);
+                }else {
+                    tempQueue.offer(newTask);
+                }
+            }
+
+            int auxSize = tempQueue.size();
+            for (int i = 0; i < auxSize; i++) {
+                nonPriorityTasks.offer(tempQueue.poll());
+            }
+            return true;
+
+        } catch (exceptionThisDataStructureIsVoid e){
+            return false;
+        }
+    }
+
     /**
      * The function searches for a task with a given ID and returns it.
-     * 
+     *
      * @param id The id parameter is an Integer that represents the unique identifier of the task that you want to search for.
      * @return The method is returning a Task object.
      */

@@ -9,7 +9,5 @@ public interface IQueue <V>{
     public boolean offer(V value);
     public V poll() throws exceptionThisDataStructureIsVoid;
     public V front() throws exceptionThisDataStructureIsVoid;
-
-    public boolean delete(V value);
     
 }
