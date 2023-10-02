@@ -36,8 +36,8 @@ public class Agenda implements Cloneable{
     }
 
     public boolean addTask(String title, String description, String date, Integer priority){
-        List<String> strings = List.of(title, description, date, priority+"");
-        Task task = new Task(count, strings);
+
+        Task task = new Task(count, description, title, date, priority);
 
         try {
             tasks.add(count, task);
@@ -57,7 +57,7 @@ public class Agenda implements Cloneable{
         try {
             Task task = searchTask(id);
             tasks.remove(id);
-            if (task.getStrings().get(3).equals("0")) {
+            if (task.getPriority() == 0) {
 
                 //nonPriorityTasks.remove(task);
             }else{
@@ -74,8 +74,7 @@ public class Agenda implements Cloneable{
     public boolean modifyTask(Integer id, String title, String description, String date, Integer priority) throws exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist{
         try {
             Task task = searchTask(id);
-            List<String> strings = List.of(title, description, date, priority+"");
-            Task newTask = new Task(id, strings);
+            Task newTask = new Task(id, description, title, date, priority);
             tasks.modify(id, newTask);
             if (priority == 0) {
                 nonPriorityTasks.offer(newTask);
@@ -93,14 +92,8 @@ public class Agenda implements Cloneable{
         return task;
     }
 
-
-    public List<String> getTaskStrings(Integer id) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
-        return searchTask(id).getStrings();
-    }
-
     public String showTasks() {
-        String message = "";
-        message=tasks.toString();
+        String message = tasks.toString();
         return message;
     }
 
@@ -118,16 +111,37 @@ public class Agenda implements Cloneable{
 
     @Override
     public String toString() {
-        return "Agenda{" + "tasks=" + tasks + ", nonPriorityTasks=" + nonPriorityTasks + ", priorityTasks=" + priorityTasks + ", count=" + count + '}';
+        return "Agenda tasks\n" + tasks + "\nnonPriorityTasks=\n" + nonPriorityTasks + "\npriorityTasks=\n" + priorityTasks + "\ncount=" + --count ;
     }
 
     public Agenda clone(){
-        Agenda clone = new Agenda();
-        clone.setCounter(count);
-        clone.setTasks(tasks.clone());
-        clone.setNonPriorityTasks(nonPriorityTasks.clone());
-        clone.setPriorityTasks(priorityTasks.clone()); ;
-        return clone;
+        try {
+            Agenda clone = (Agenda) super.clone();
+            clone.setCounter(this.count);
+            clone.setTasks(this.tasks.clone());
+            clone.setNonPriorityTasks(this.nonPriorityTasks.clone());
+            clone.setPriorityTasks(this.priorityTasks.clone());
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String nonPriorityTasksToString(){
+        String msg = "";
+        Queue<Task> clone = nonPriorityTasks.clone();
+        while(!clone.isEmpty()){
+            try {
+                msg += clone.poll().toString() + "\n";
+            } catch (exceptionThisDataStructureIsVoid e) {
+                e.printStackTrace();
+            }
+        }
+        return msg;
+    }
+
+    public String priorityTasksToString(){
+        return priorityTasks.toString();
     }
 
 

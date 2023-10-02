@@ -16,7 +16,6 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
     public void insert(int priority, V node) {
         arr.add(new NodePriorityQueue(priority, node));
         buildMaxHeapify();
-
     }
 
     public void maxHeapify(int index) {
@@ -97,4 +96,21 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
         }
         return clone;
     }
+
+    public int size(){
+        return arr.size();
+    }
+
+    public boolean isEmpty(){
+        return arr.size() == 1;
+    }
+
+    public String toString(){
+        String msg = "";
+        for (int i = 1; i < arr.size(); i++) {
+            msg += extractMax() + "\n";
+        }
+        return msg;
+    }
+
 }
