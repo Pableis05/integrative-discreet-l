@@ -3,10 +3,11 @@ package test.dataStructureTest;
 
 import dataStructures.Heap;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 public class HeaPTest {
+
+
 
     // Inserting a single element and extracting it
     @Test
@@ -32,9 +33,9 @@ public class HeaPTest {
     @Test
     public void test_increase_priority_and_extract_element() {
         Heap<Integer> heap = new Heap<>();
-        heap.insert(1, 10);
-        heap.insert(2, 20);
         heap.insert(3, 30);
+        heap.insert(2, 20);
+        heap.insert(1, 10);
         heap.increaseKey(10, 4);
         assertEquals(Integer.valueOf(10), heap.extractMax());
     }
@@ -74,6 +75,7 @@ public class HeaPTest {
     // Increasing priority of an element not present in the heap
     @Test
     public void test_increase_priority_of_nonexistent_element() {
+
         Heap<Integer> heap = new Heap<>();
         heap.insert(2, 12);
         heap.insert(1, 10);
@@ -127,8 +129,8 @@ public class HeaPTest {
     @Test
     public void test_insert_and_extract_in_order() {
         Heap<Integer> heap = new Heap<>();
-        heap.insert(3, 10);
         heap.insert(2, 20);
+        heap.insert(3, 10);
         heap.insert(1, 30);
         heap.insert(4, 40);
     
@@ -147,7 +149,6 @@ public class HeaPTest {
         heap.insert(1, 30);
         heap.insert(1, 40);
         heap.insert(1, 50);
-
         assertEquals(Integer.valueOf(10), heap.extractMax());
         assertEquals(Integer.valueOf(50), heap.extractMax());
         assertEquals(Integer.valueOf(40), heap.extractMax());

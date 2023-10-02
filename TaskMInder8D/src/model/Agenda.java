@@ -77,6 +77,7 @@ public class Agenda implements Cloneable{
             List<String> strings = List.of(title, description, date, priority+"");
             Task newTask = new Task(id, strings);
             tasks.modify(id, newTask);
+
             if (priority == 0) {
                 nonPriorityTasks.offer(newTask);
             }else{
