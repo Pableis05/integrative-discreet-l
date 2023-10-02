@@ -91,6 +91,8 @@ public class Agenda implements Cloneable{
  * @param id The id parameter is an Integer that represents the unique identifier of the task that needs to be removed.
  * @return The method is returning a boolean value. It returns true if the task with the given id was successfully removed, and false if the task does not exist or if the data structure is empty.
  */
+
+
     public boolean removeTask(Integer id){
         try {
             Task task = searchTask(id);
@@ -109,14 +111,21 @@ public class Agenda implements Cloneable{
     }
 
 
-    public boolean removePriorityTask(Task task){
+    public boolean removePriorityTask(Task task) {
         Heap<Task> tempHeap = new Heap<>();
         int sizePriority = priorityTasks.size();
-        while (!priorityTasks.isEmpty()) {
-            Task element = priorityTasks.extractMax();
-            if (!element.equals(task)) {
-                tempHeap.insert(element.getPriority(), element);
+        try {
+            while (!priorityTasks.isEmpty()) {
+                Task element = null;
+
+                element = priorityTasks.extractMax();
+
+                if (!element.equals(task)) {
+                    tempHeap.insert(element.getPriority(), element);
+                }
             }
+        }catch (exceptionThisDataStructureIsVoid e){
+            return false;
         }
 
         if (tempHeap.size() == sizePriority)
@@ -124,8 +133,15 @@ public class Agenda implements Cloneable{
 
 
         while (!tempHeap.isEmpty()) {
-            Task element = tempHeap.extractMax();
-            priorityTasks.insert(element.getPriority(), element);
+
+            Task element = null;
+            try {
+                element = tempHeap.extractMax();
+                priorityTasks.insert(element.getPriority(), element);
+
+            } catch (exceptionThisDataStructureIsVoid e) {
+                throw new RuntimeException(e);
+            }
         }
         return true;
 
@@ -327,8 +343,13 @@ public class Agenda implements Cloneable{
     public String printPriorityTasks(){
         String msg = "";
         Heap<Task> clone = priorityTasks.clone();
+
         while(!clone.isEmpty()){
+            try {
                 msg += clone.extractMax().toString() + "\n";
+            }catch (exceptionThisDataStructureIsVoid e){
+                msg="The priority tasks is empty";
+            }
         }
         return msg;
     }

@@ -1,4 +1,6 @@
 package dataStructures;
+import exceptions.exceptionTheObjectDoesntExist;
+import exceptions.exceptionThisDataStructureIsVoid;
 
 import java.util.ArrayList;
 
@@ -79,13 +81,16 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
      * @return The method is returning the maximum value from the heap.
      */
     @Override
-    public V extractMax() {
+    public V extractMax() throws exceptionThisDataStructureIsVoid{
         V max=null;
         if(arr.size() >=2) {
             max = arr.get(1).getNode();
             arr.set(1,arr.get(arr.size()-1));
             arr.remove(arr.size()-1);
             maxHeapify(1);
+        }
+        if(max==null){
+            throw new exceptionThisDataStructureIsVoid();
         }
         return max;
     }
@@ -97,7 +102,7 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
      * @param newPriority The new priority value that you want to assign to the node.
      */
     @Override
-    public void increaseKey(V node, int newPriority) {
+    public void increaseKey(V node, int newPriority) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
         int index = -1;
         for (int i = 1; i < arr.size(); i++) {
             if(arr.get(i).getNode().equals(node)){
@@ -107,6 +112,12 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
         if(newPriority > arr.get(index).getPriority()) {
             arr.get(index).setPriority(arr.get(index).getPriority()+newPriority);
             buildMaxHeapify();
+        }
+        if(index==-1){
+            throw new exceptionTheObjectDoesntExist(node+"");
+        }
+        if(isEmpty()){
+            throw new exceptionThisDataStructureIsVoid();
         }
     }
 
@@ -204,10 +215,14 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
      * 
      * @return The method is returning a string representation of the elements in the "arr" list, with each element on a new line.
      */
-    public String toString(){
+    public String toString() {
         String msg = "";
         for (int i = 1; i < arr.size(); i++) {
-            msg += extractMax() + "\n";
+            try {
+                msg += extractMax() + "\n";
+            } catch (exceptionThisDataStructureIsVoid e) {
+                msg=e.getMessage();
+            }
         }
         return msg;
     }

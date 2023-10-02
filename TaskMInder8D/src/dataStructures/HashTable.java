@@ -2,6 +2,9 @@ package dataStructures;
 import  exceptions.exceptionObjectAlredyExistWithThatKey;
 import exceptions.exceptionThisDataStructureIsVoid;
 import exceptions.exceptionTheObjectDoesntExist;
+
+import java.util.Objects;
+
 public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V>, Cloneable{
     private   NodeHash<K,V>[] table;
     private   int size;
@@ -54,6 +57,7 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V>,
 
             int hash = hash(key);
             NodeHash<K, V> newNodeHash = new NodeHash<>(key, value);
+
             if (table[hash] == null) {
                 table[hash] = newNodeHash;
                 size++;

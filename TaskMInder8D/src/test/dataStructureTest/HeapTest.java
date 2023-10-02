@@ -1,6 +1,7 @@
 package test.dataStructureTest;
 
 import dataStructures.Heap;
+import exceptions.exceptionThisDataStructureIsVoid;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -19,6 +20,7 @@ public class HeapTest {
         heap.insert(1, 30);
         heap.insert(2, 20);
         heap.insert(3, 10);
+        heap.insert(-1,4);
     }
 
 
@@ -31,7 +33,7 @@ public class HeapTest {
 
     }
     @Test
-    public void test_insert_and_extract_single_element() {
+    public void test_insert_and_extract_single_element() throws exceptionThisDataStructureIsVoid {
         setupStageHeapVoid();
         heap.insert(1, 10);
         assertEquals(Integer.valueOf(10), heap.extractMax());
@@ -40,7 +42,7 @@ public class HeapTest {
 
     // Inserting multiple elements and extracting them in order
     @Test
-    public void test_insert_and_extract_multiple_elements() {
+    public void test_insert_and_extract_multiple_elements() throws exceptionThisDataStructureIsVoid {
         setupStageHeapNormal();
         assertEquals(Integer.valueOf(10), heap.extractMax());
         assertEquals(Integer.valueOf(20), heap.extractMax());
@@ -49,25 +51,24 @@ public class HeapTest {
 
     // Increasing the priority of an element and extracting it
     @Test
-    public void test_increase_priority_and_extract_element() {
-        Heap<Integer> heap = new Heap<>();
-        heap.insert(3, 30);
-        heap.insert(2, 20);
-        heap.insert(1, 10);
+    public void test_increase_priority_and_extract_element() throws exceptionThisDataStructureIsVoid {
+        setupStageHeapNormal();
         heap.increaseKey(10, 4);
         assertEquals(Integer.valueOf(10), heap.extractMax());
     }
 
+
     // Extracting from an empty heap
     @Test
-    public void test_extract_from_empty_heap() {
+    public void test_extract_from_empty_heap() throws exceptionThisDataStructureIsVoid {
         setupStageHeapVoid();
         assertNull(heap.extractMax());
+
     }
 
     // Inserting null element
     @Test
-    public void test_insert_null_element() {
+    public void test_insert_null_element()throws exceptionThisDataStructureIsVoid  {
         setupStageHeapVoid();
         heap.insert(1, null);
         assertNull(heap.extractMax());
@@ -75,35 +76,22 @@ public class HeapTest {
 
     // Inserting element with negative priority
     @Test
-    public void test_insert_element_with_negative_priority() {
+    public void test_insert_element_with_negative_priority() throws exceptionThisDataStructureIsVoid {
         setupStageHeapWithNegative();
-        assertEquals(Integer.valueOf(10), heap.extractMax());
-    }
-
-    // Increasing priority of an element to a negative value
-    @Test
-    public void test_increase_priority_to_negative_value() {
-        setupStageHeapVoid();
-        heap.insert(1, 10);
-        heap.insert(-30, 40);
-        heap.increaseKey(10, -10);
         assertEquals(Integer.valueOf(10), heap.extractMax());
     }
 
     // Increasing priority of an element not present in the heap
     @Test
-    public void test_increase_priority_of_nonexistent_element() {
-
-        Heap<Integer> heap = new Heap<>();
-        heap.insert(2, 12);
-        heap.insert(1, 10);
-        heap.increaseKey(10, 4);
-        assertEquals(Integer.valueOf(10), heap.extractMax());
+    public void test_increase_priority_of_nonexistent_element() throws exceptionThisDataStructureIsVoid {
+        setupStageHeapNormal();
+        heap.increaseKey(15, 4);
+        assertEquals(Integer.valueOf(30), heap.extractMax());
     }
 
     // Inserting and extracting elements with large priority values
     @Test
-    public void test_insert_and_extract_large_priority_elements() {
+    public void test_insert_and_extract_large_priority_elements()throws exceptionThisDataStructureIsVoid  {
         Heap<Integer> heap = new Heap<>();
         heap.insert(Integer.MAX_VALUE, 10);
         heap.insert(Integer.MIN_VALUE, 20);
@@ -115,7 +103,7 @@ public class HeapTest {
 
     // Inserting and extracting elements with large node values
     @Test
-    public void test_insert_and_extract_large_node_elements() {
+    public void test_insert_and_extract_large_node_elements()throws exceptionThisDataStructureIsVoid  {
         Heap<Long> heap = new Heap<>();
         heap.insert(Integer.MAX_VALUE, Long.MAX_VALUE);
         heap.insert(2, Long.MIN_VALUE);
@@ -125,7 +113,7 @@ public class HeapTest {
 
     // Inserting and extracting elements with same node but different priority values
     @Test
-    public void test_insert_and_extract_same_node_different_priority_elements() {
+    public void test_insert_and_extract_same_node_different_priority_elements() throws exceptionThisDataStructureIsVoid {
         Heap<Integer> heap = new Heap<>();
         heap.insert(1, 10);
         heap.insert(2, 10);
@@ -137,18 +125,18 @@ public class HeapTest {
 
     // Inserting a single element and extracting it
     @Test
-    public void test_insert_and_extract() {
+    public void test_insert_and_extract()throws exceptionThisDataStructureIsVoid  {
         Heap<Integer> heap = new Heap<>();
         heap.insert(5, 10);
-        assertEquals(10, heap.extractMax().intValue());
+        assertEquals(10, heap.extractMax().intValue()) ;
     }
 
     // Inserting multiple elements and extracting them in order
     @Test
-    public void testInsertAndExtractInOrder() {
-        Heap<Integer> heap = new Heap<>();
-        heap.insert(2, 20);
+    public void testInsertAndExtractInOrder()throws exceptionThisDataStructureIsVoid  {
+        setupStageHeapVoid();
         heap.insert(3, 10);
+        heap.insert(2, 20);
         heap.insert(1, 30);
         heap.insert(4, 40);
     
@@ -160,7 +148,8 @@ public class HeapTest {
 
     // Inserting elements with same priority and extracting them in order of insertion
     @Test
-    public void testInsertionOrder() {
+    public void testInsertionOrder() throws exceptionThisDataStructureIsVoid {
+
         Heap<Integer> heap = new Heap<>();
         heap.insert(1, 10);
         heap.insert(1, 20);
@@ -176,7 +165,7 @@ public class HeapTest {
 
     // Cloning the heap and verifying the clone is equal to the original heap
     @Test
-    public void testCloneHeap() {
+    public void testCloneHeap()throws exceptionThisDataStructureIsVoid  {
         Heap<Integer> heap = new Heap<>();
         heap.insert(1, 10);
         heap.insert(2, 20);

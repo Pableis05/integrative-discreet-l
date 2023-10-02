@@ -57,10 +57,9 @@ public class HashTableTest {
         @Test
         public void addObjectWithCollisionAndKeyAlreadyExist () throws exceptionObjectAlredyExistWithThatKey {
                 setupStage2();
-                hashTable.add(0.3, "Alejadro Magno");
-
+                hashTable.add(0.4, "Alejadro Magno");
                 try {
-                    hashTable.add(0.3, "MonitorGod");
+                    hashTable.add(0.4, "MonitorGod");
                     fail();
                 } catch (exceptionObjectAlredyExistWithThatKey e) {
                     assertNotNull("Exception object with the same key that other",e);
@@ -83,16 +82,14 @@ public class HashTableTest {
     @Test
     public void searchObjectInList() throws exceptionThisDataStructureIsVoid, exceptionObjectAlredyExistWithThatKey, exceptionTheObjectDoesntExist{
         setupStage2();
-        hashTable.add(0.36, "Marco");
-        String value = hashTable.search(0.36);
-        assertEquals("Marco",value);
+        String value = hashTable.search(8.5);
+        assertEquals("TQM",value);
     }
     @Test
     public void searchObjectInListWithCollision() throws exceptionThisDataStructureIsVoid, exceptionObjectAlredyExistWithThatKey, exceptionTheObjectDoesntExist {
         setupStageWithColosion();
-        hashTable.add(0.36, "Marco");
-        String value = hashTable.search(0.36);
-        assertEquals("Marco",value);
+        String value = hashTable.search(14.12);
+        assertEquals("Aurelio",value);
     }
     @Test
     public void searchObjectDoesntExistInList() throws exceptionObjectAlredyExistWithThatKey {
@@ -153,14 +150,14 @@ public class HashTableTest {
 
     @Test
     public void listIsEmpty() throws exceptionObjectAlredyExistWithThatKey, exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist {
-        setupStage1();
-        hashTable.add(0.3, "Hola");
-        hashTable.add(0.4, "buen");
-        hashTable.add(2.0, "Monitor");
+        setupStage2();
         hashTable.remove(0.3);
         hashTable.remove(0.4);
         hashTable.remove(2.0);
-
+        hashTable.remove(2.4);
+        hashTable.remove(4.5);
+        hashTable.remove(6.5);
+        hashTable.remove(8.5);
         assertTrue(hashTable.isEmpty());
     }
 
