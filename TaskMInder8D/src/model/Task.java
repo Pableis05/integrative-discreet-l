@@ -1,26 +1,41 @@
 package model;
 import java.util.List;
-public class Task   {
+public class Task implements Cloneable{
 
     private int id;
+    private String title, description, date;
+    private int priority;
 
-    private List<String> strings;
-    public Task(int id, List<String> strings) {
+    public Task(int id, String title, String description, String date, int priority) {
         this.id = id;
-        this.strings = strings;
+        this.title = title;
+        this.description = description;
+        this.date = date;
+        this.priority = priority;
     }
 
     public int getId() {
         return id;
     }
     
-    public List<String> getStrings() {
-        return strings;
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public int getPriority() {
+        return priority;
     }
 
     public String toString() {
-        return "Task{" + "id=" + id + ", strings=" + strings + '}';
+        return "Task{" + "id=" + id + ", Title=" + title + ", description=" + description + ", date=" + date + ", priority=" + priority + '}';
     }
-
 
 }

@@ -1,5 +1,4 @@
 package model;
-
 import exceptions.exceptionTheObjectDoesntExist;
 import exceptions.exceptionThisDataStructureIsVoid;
 import java.util.Stack;
@@ -22,7 +21,7 @@ public class ControllerAgenda {
     }
 
     public void removeTask(Integer id) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
-        saveState("remove task by title: " + searchTask(id).getStrings().get(0));
+        saveState("remove task by title: " + searchTask(id).getTitle());
         agenda.removeTask(id);
     }
 
@@ -37,7 +36,9 @@ public class ControllerAgenda {
     }
 
     public String showTasks() {
-        return agenda.showTasks();
+        String msg = "";
+        msg += agenda + "\n";
+        return msg;
     }
 
     private void saveState(String changeMessage) {
@@ -48,16 +49,13 @@ public class ControllerAgenda {
     }
 
     public void undo() {
-        if (undoStack.size() > 1) {
+        if (undoStack.size() > 1){
             undoStack.pop();
             agenda = undoStack.peek();
         }
     }
     public Agenda getAgenda() {
         return agenda;
-    }
-    public String getChangeMessage() {
-        return agenda.getTasks().getChangeMessage();
     }
 
 }

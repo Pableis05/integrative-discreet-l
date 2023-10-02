@@ -22,4 +22,9 @@ public class NodePriorityQueue <T> {
     public void setNode(T node){
         this.node = node;
     }
+
+    public T search(T node){return node;}
+
+    public boolean delete(T node){return true;}
+
 }

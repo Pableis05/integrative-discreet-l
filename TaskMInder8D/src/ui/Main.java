@@ -85,10 +85,10 @@ public class Main {
         int id = sc.nextInt();
         sc.nextLine();
         int option = -1;
-        String title = controllerAgenda.searchTask(id).getStrings().get(0);
-        String description = controllerAgenda.searchTask(id).getStrings().get(1);
-        String date = controllerAgenda.searchTask(id).getStrings().get(2);
-        int priority = Integer.parseInt(controllerAgenda.searchTask(id).getStrings().get(3));
+        String title = controllerAgenda.searchTask(id).getTitle();
+        String description = controllerAgenda.searchTask(id).getDescription();
+        String date = controllerAgenda.searchTask(id).getDate();
+        int priority = controllerAgenda.searchTask(id).getPriority();
 
         do{
             System.out.println("1. Modify title, 2. Modify description, 3. Modify date, 4. Modify priority, 0. Exit");

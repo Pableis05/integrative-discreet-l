@@ -5,7 +5,7 @@ import dataStructures.Heap;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class HeaPTest {
+public class HeapTest {
 
 
 

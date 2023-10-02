@@ -1,7 +1,7 @@
 package dataStructures;
 import exceptions.exceptionThisDataStructureIsVoid;
 
-public class Queue < V> implements IQueue< V>, Cloneable{
+public class Queue <V> implements IQueue< V>, Cloneable{
 
     public Node<V> first;
     public Node<V> last;
@@ -29,7 +29,7 @@ public class Queue < V> implements IQueue< V>, Cloneable{
      * The function adds a node to the end of a linked list and returns true if the operation was
      * successful.
      * 
-     * @param value The value parameter represents the node that is being added to the linked list.
+     * @param Value The value parameter represents the node that is being added to the linked list.
      * @return The method is returning a boolean value indicating whether the node was successfully
      * added to the linked list.
      */
@@ -110,6 +110,27 @@ public class Queue < V> implements IQueue< V>, Cloneable{
     }
 
 
-
+    public boolean delete(V value) {
+        Node<V> current = first;
+        boolean deleted = false;
+        while(current != null){
+            if(current.getValue().equals(value)){
+                if(current == first){
+                    first = first.getNext();
+                    first.setPrev(null);
+                }else if(current == last){
+                    last = last.getPrev();
+                    last.setNext(null);
+                }else{
+                    current.getPrev().setNext(current.getNext());
+                    current.getNext().setPrev(current.getPrev());
+                }
+                deleted = true;
+                size--;
+            }
+            current = current.getNext();
+        }
+        return deleted;
+    }
 
 }
