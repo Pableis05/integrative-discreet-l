@@ -49,7 +49,7 @@ public class ControllerAgenda {
     }
 
     public void undo() {
-        if (undoStack.size() > 1) {
+        if (undoStack.size() > 1){
             undoStack.pop();
             agenda = undoStack.peek();
         }

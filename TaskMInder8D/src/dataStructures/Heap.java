@@ -44,6 +44,18 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
         }
     }
 
+    public void heapSort() {
+        buildMaxHeapify();
+
+        for(int i = arr.size() - 1; i >= 1; i--) {
+            NodePriorityQueue<V> temp = arr.get(1);
+            arr.set(1, arr.get(i));
+            arr.set(i, temp);
+            maxHeapify(1);
+        }
+    }
+
+
     @Override
     public V extractMax() {
         V max=null;
@@ -68,6 +80,29 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
             arr.get(index).setPriority(arr.get(index).getPriority()+newPriority);
             buildMaxHeapify();
         }
+    }
+
+    @Override
+    public V search(V node) {
+        V ans = null;
+        for (int i = 1; i < arr.size(); i++) {
+            if(arr.get(i).getNode().equals(node)){
+                ans = arr.get(i).getNode();
+            }
+        }
+        return ans;
+    }
+
+    @Override
+    public boolean delete(V node) {
+        boolean ans = false;
+        for (int i = 1; i < arr.size(); i++) {
+            if(arr.get(i).getNode().equals(node)){
+                arr.remove(i);
+                ans = true;
+            }
+        }
+        return ans;
     }
 
     @Override

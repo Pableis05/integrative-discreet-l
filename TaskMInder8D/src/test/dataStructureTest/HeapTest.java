@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class HeaPTest {
+public class HeapTest {
 
     // Inserting a single element and extracting it
     @Test

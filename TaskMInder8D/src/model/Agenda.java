@@ -59,9 +59,9 @@ public class Agenda implements Cloneable{
             tasks.remove(id);
             if (task.getPriority() == 0) {
 
-                //nonPriorityTasks.remove(task);
+                nonPriorityTasks.delete(task);
             }else{
-                //priorityTasks.remove(task);
+                priorityTasks.delete(task);
             }
             return true;
         } catch (exceptionTheObjectDoesntExist e) {
@@ -74,11 +74,13 @@ public class Agenda implements Cloneable{
     public boolean modifyTask(Integer id, String title, String description, String date, Integer priority) throws exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist{
         try {
             Task task = searchTask(id);
-            Task newTask = new Task(id, description, title, date, priority);
+            Task newTask = new Task(id, title, description, date, priority);
             tasks.modify(id, newTask);
             if (priority == 0) {
                 nonPriorityTasks.offer(newTask);
+                nonPriorityTasks.delete(task);
             }else{
+                priorityTasks.delete(task);
                 priorityTasks.insert(priority, newTask);
             }
             return true;
@@ -111,7 +113,8 @@ public class Agenda implements Cloneable{
 
     @Override
     public String toString() {
-        return "Agenda tasks\n" + tasks + "\nnonPriorityTasks=\n" + nonPriorityTasks + "\npriorityTasks=\n" + priorityTasks + "\ncount=" + --count ;
+        int auxCount = count;
+        return "Agenda tasks\n" + tasks + "\nnonPriorityTasks=\n" + printNonPriorityTasks() + "\npriorityTasks=\n" + printPriorityTasks() + "\ncount=" + --auxCount;
     }
 
     public Agenda clone(){
@@ -127,7 +130,7 @@ public class Agenda implements Cloneable{
         }
     }
 
-    public String nonPriorityTasksToString(){
+    public String printNonPriorityTasks(){
         String msg = "";
         Queue<Task> clone = nonPriorityTasks.clone();
         while(!clone.isEmpty()){
@@ -140,9 +143,16 @@ public class Agenda implements Cloneable{
         return msg;
     }
 
-    public String priorityTasksToString(){
-        return priorityTasks.toString();
+    public String printPriorityTasks(){
+        String msg = "";
+        Heap<Task> clone = priorityTasks.clone();
+        while(!clone.isEmpty()){
+                msg += clone.extractMax().toString() + "\n";
+        }
+        return msg;
     }
+
+
 
 
 }
