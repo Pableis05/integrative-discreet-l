@@ -1,29 +1,47 @@
 package test.dataStructureTest;
 
-
 import dataStructures.Heap;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class HeapTest {
 
-
+    private Heap<Integer> heap;
 
     // Inserting a single element and extracting it
+
+    private void setupStageHeapVoid(){
+       heap= new Heap<>();
+    }
+    private void setupStageHeapNormal(){
+        heap= new Heap<>();
+        heap.insert(0, 40);
+        heap.insert(1, 30);
+        heap.insert(2, 20);
+        heap.insert(3, 10);
+    }
+
+
+    private void setupStageHeapWithNegative(){
+        heap= new Heap<>();
+        heap.insert(-1, 10);
+        heap.insert(-10, 40);
+        heap.insert(-2, 20);
+        heap.insert(-3, 10);
+
+    }
     @Test
     public void test_insert_and_extract_single_element() {
-        Heap<Integer> heap = new Heap<>();
+        setupStageHeapVoid();
         heap.insert(1, 10);
         assertEquals(Integer.valueOf(10), heap.extractMax());
+
     }
 
     // Inserting multiple elements and extracting them in order
     @Test
     public void test_insert_and_extract_multiple_elements() {
-        Heap<Integer> heap = new Heap<>();
-        heap.insert(3, 10);
-        heap.insert(2, 20);
-        heap.insert(1, 30);
+        setupStageHeapNormal();
         assertEquals(Integer.valueOf(10), heap.extractMax());
         assertEquals(Integer.valueOf(20), heap.extractMax());
         assertEquals(Integer.valueOf(30), heap.extractMax());
@@ -43,14 +61,14 @@ public class HeapTest {
     // Extracting from an empty heap
     @Test
     public void test_extract_from_empty_heap() {
-        Heap<Integer> heap = new Heap<>();
+        setupStageHeapVoid();
         assertNull(heap.extractMax());
     }
 
     // Inserting null element
     @Test
     public void test_insert_null_element() {
-        Heap<Integer> heap = new Heap<>();
+        setupStageHeapVoid();
         heap.insert(1, null);
         assertNull(heap.extractMax());
     }
@@ -58,17 +76,17 @@ public class HeapTest {
     // Inserting element with negative priority
     @Test
     public void test_insert_element_with_negative_priority() {
-        Heap<Integer> heap = new Heap<>();
-        heap.insert(-1, 10);
+        setupStageHeapWithNegative();
         assertEquals(Integer.valueOf(10), heap.extractMax());
     }
 
     // Increasing priority of an element to a negative value
     @Test
     public void test_increase_priority_to_negative_value() {
-        Heap<Integer> heap = new Heap<>();
+        setupStageHeapVoid();
         heap.insert(1, 10);
-        heap.increaseKey(10, -1);
+        heap.insert(-30, 40);
+        heap.increaseKey(10, -10);
         assertEquals(Integer.valueOf(10), heap.extractMax());
     }
 
@@ -127,7 +145,7 @@ public class HeapTest {
 
     // Inserting multiple elements and extracting them in order
     @Test
-    public void test_insert_and_extract_in_order() {
+    public void testInsertAndExtractInOrder() {
         Heap<Integer> heap = new Heap<>();
         heap.insert(2, 20);
         heap.insert(3, 10);
@@ -142,7 +160,7 @@ public class HeapTest {
 
     // Inserting elements with same priority and extracting them in order of insertion
     @Test
-    public void test_insertion_order() {
+    public void testInsertionOrder() {
         Heap<Integer> heap = new Heap<>();
         heap.insert(1, 10);
         heap.insert(1, 20);
@@ -158,13 +176,17 @@ public class HeapTest {
 
     // Cloning the heap and verifying the clone is equal to the original heap
     @Test
-    public void test_clone_heap() {
+    public void testCloneHeap() {
         Heap<Integer> heap = new Heap<>();
         heap.insert(1, 10);
         heap.insert(2, 20);
         heap.insert(3, 30);
         Heap<Integer> clone = heap.clone();
-        assertEquals(heap.show(), clone.show());
+        Integer aux=0;
+        do{
+            aux=heap.extractMax();
+            assertEquals(aux,clone.extractMax());
+        }while (aux!=null);
     }
 
 

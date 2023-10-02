@@ -97,6 +97,11 @@ public class Queue <V> implements IQueue< V>, Cloneable{
     public int size(){
         return size;
     }
+    /**
+     * The `clone` function creates a deep copy of the current queue by iterating through each node and adding its value to the new queue.
+     * 
+     * @return The method is returning a clone of the original queue.
+     */
     @Override
     public Queue<V> clone(){
         Queue<V> clone = new Queue<>();

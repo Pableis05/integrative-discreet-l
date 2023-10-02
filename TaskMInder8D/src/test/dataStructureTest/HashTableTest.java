@@ -28,6 +28,14 @@ public class HashTableTest {
 
     }
 
+    private void setupStageWithColosion()throws exceptionObjectAlredyExistWithThatKey {
+        setupStage2();
+        hashTable.add(1.6, "Alejadro Magno");
+        hashTable.add(14.12, "Aurelio");
+        hashTable.add(1.37,"Aristizabal Lord of the Night");
+
+    }
+
         @Test
         public void addObjectWithKeyBMajorThanCapacity() throws exceptionObjectAlredyExistWithThatKey{
             setupStage1();
@@ -38,13 +46,12 @@ public class HashTableTest {
         }
         @Test
         public void addObjectWithCollision () throws exceptionObjectAlredyExistWithThatKey {
-
-                setupStage2();
-                hashTable.add(0.37, "Alejadro Magno");
-                boolean added;
-                added = hashTable.add(0.35, "Marco");
-                assertTrue(added);
-
+            setupStageWithColosion();
+            boolean added;
+            added = hashTable.add(0.36, "Marco");
+            assertEquals("The nodes haves the same positon",hashTable.hash(0.36),hashTable.hash(1.6),hashTable.hash(14.12));
+            assertEquals("The nodes haves the same positon",hashTable.hash(0.36),hashTable.hash(1.37));
+            assertTrue(added);
         }
 
         @Test
@@ -76,16 +83,16 @@ public class HashTableTest {
     @Test
     public void searchObjectInList() throws exceptionThisDataStructureIsVoid, exceptionObjectAlredyExistWithThatKey, exceptionTheObjectDoesntExist{
         setupStage2();
-        String value = hashTable.search(0.4);
-        assertEquals("Juan",value);
+        hashTable.add(0.36, "Marco");
+        String value = hashTable.search(0.36);
+        assertEquals("Marco",value);
     }
     @Test
     public void searchObjectInListWithCollision() throws exceptionThisDataStructureIsVoid, exceptionObjectAlredyExistWithThatKey, exceptionTheObjectDoesntExist {
-        setupStage2();
-        hashTable.add(0.39, "Marco Aurelio");
-        hashTable.add(0.37, "Alejadro Magno");
-        String value = hashTable.search(0.37);
-        assertEquals("Alejadro Magno",value);
+        setupStageWithColosion();
+        hashTable.add(0.36, "Marco");
+        String value = hashTable.search(0.36);
+        assertEquals("Marco",value);
     }
     @Test
     public void searchObjectDoesntExistInList() throws exceptionObjectAlredyExistWithThatKey {
@@ -136,13 +143,12 @@ public class HashTableTest {
     }
     @Test
     public void removeObjectInListWithCollision() throws exceptionThisDataStructureIsVoid, exceptionObjectAlredyExistWithThatKey, exceptionTheObjectDoesntExist {
-        setupStage2();
-        hashTable.add(0.39, "Marco Aurelio");
-        hashTable.add(0.37, "Alejadro Magno");
-        boolean removed = hashTable.remove(0.37);
-
-
-        assertTrue(removed);
+        setupStageWithColosion();
+        assertEquals("The nodes haves the same positon",hashTable.hash(0.36),hashTable.hash(1.6),hashTable.hash(14.12));
+        assertEquals("The nodes haves the same positon",hashTable.hash(0.36),hashTable.hash(1.37));
+        hashTable.add(0.36, "Marco");
+        boolean removed = hashTable.remove(14.12); //Remove->"Aurelio"
+        assertTrue("The object was removed",removed);
     }
 
     @Test

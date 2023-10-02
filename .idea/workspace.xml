@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8660fbb3-4b40-4720-8fe5-bb14747a4a91" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/IClonable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/HashTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/HashTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/Heap.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/Heap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/NodePriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/NodePriorityQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/Queue.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/Queue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/Stack.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/dataStructures/Stack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/model/Agenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/model/Agenda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/HeaPTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/HeaPTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/model/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/HashTableTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/HashTableTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/HeapTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TaskMInder8D/src/test/dataStructureTest/HeapTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/integrative-discreet-l/dataStructures/Heap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/integrative-discreet-l/dataStructures/Heap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/integrative-discreet-l/model/Agenda.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/integrative-discreet-l/model/Agenda.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/integrative-discreet-l/test/dataStructureTest/HashTableTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/integrative-discreet-l/test/dataStructureTest/HashTableTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/integrative-discreet-l/test/dataStructureTest/HeapTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/integrative-discreet-l/test/dataStructureTest/HeapTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,16 +25,37 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2WCvLFl0ZrpDjjbxA5usBSOH5Mw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore_missing_gitignore": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="JUnit.HeaPTest.test_increase_priority_of_nonexistent_element">
-    <configuration name="HeaPTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+}]]></component>
+  <component name="RunManager" selected="JUnit.HashTableTest">
+    <configuration name="HashTableTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="integrative-discreet-l" />
       <extension name="coverage">
         <pattern>
@@ -35,13 +64,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.dataStructureTest" />
-      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HeaPTest" />
+      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HashTableTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HeaPTest.test_increase_priority_and_extract_element" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HashTableTest.addObjectWithCollision" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="integrative-discreet-l" />
       <extension name="coverage">
         <pattern>
@@ -50,14 +79,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.dataStructureTest" />
-      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HeaPTest" />
-      <option name="METHOD_NAME" value="test_increase_priority_and_extract_element" />
+      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HashTableTest" />
+      <option name="METHOD_NAME" value="addObjectWithCollision" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HeaPTest.test_increase_priority_of_nonexistent_element" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HashTableTest.removeObjectInListWithCollision" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="integrative-discreet-l" />
       <extension name="coverage">
         <pattern>
@@ -66,14 +95,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.dataStructureTest" />
-      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HeaPTest" />
-      <option name="METHOD_NAME" value="test_increase_priority_of_nonexistent_element" />
+      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HashTableTest" />
+      <option name="METHOD_NAME" value="removeObjectInListWithCollision" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HeaPTest.test_insert_and_extract_in_order" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HashTableTest.searchObjectInList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="integrative-discreet-l" />
       <extension name="coverage">
         <pattern>
@@ -82,14 +111,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.dataStructureTest" />
-      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HeaPTest" />
-      <option name="METHOD_NAME" value="test_insert_and_extract_in_order" />
+      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HashTableTest" />
+      <option name="METHOD_NAME" value="searchObjectInList" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HeaPTest.test_insertion_order" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HashTableTest.searchObjectInListWithCollision" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="integrative-discreet-l" />
       <extension name="coverage">
         <pattern>
@@ -98,8 +127,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.dataStructureTest" />
-      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HeaPTest" />
-      <option name="METHOD_NAME" value="test_insertion_order" />
+      <option name="MAIN_CLASS_NAME" value="test.dataStructureTest.HashTableTest" />
+      <option name="METHOD_NAME" value="searchObjectInListWithCollision" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -107,15 +136,27 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.HeaPTest.test_increase_priority_of_nonexistent_element" />
-        <item itemvalue="JUnit.HeaPTest.test_increase_priority_and_extract_element" />
-        <item itemvalue="JUnit.HeaPTest" />
-        <item itemvalue="JUnit.HeaPTest.test_insert_and_extract_in_order" />
-        <item itemvalue="JUnit.HeaPTest.test_insertion_order" />
+        <item itemvalue="JUnit.HashTableTest" />
+        <item itemvalue="JUnit.HashTableTest.addObjectWithCollision" />
+        <item itemvalue="JUnit.HashTableTest.searchObjectInList" />
+        <item itemvalue="JUnit.HashTableTest.searchObjectInListWithCollision" />
+        <item itemvalue="JUnit.HashTableTest.removeObjectInListWithCollision" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8660fbb3-4b40-4720-8fe5-bb14747a4a91" name="Changes" comment="" />
+      <created>1696249318643</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696249318643</updated>
+      <workItem from="1696249321430" duration="8001000" />
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

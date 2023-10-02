@@ -91,6 +91,12 @@ public class Stack <V> implements IStack<V>, Cloneable {
         return size;
     }
 
+    /**
+     * The function clones a stack by creating a new stack and pushing the values from the original stack into the new stack.
+     * 
+     * @return The method is returning a clone of the original stack.
+     */
+    @Override
     public Stack<V> clone(){
         Stack<V> clone=new Stack<>();
         Stack<V> temp=new Stack<>();

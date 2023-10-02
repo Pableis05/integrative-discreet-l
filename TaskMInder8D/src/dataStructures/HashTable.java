@@ -20,7 +20,7 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V>,
     */
     @Override
     public int hash(K key) {
-        int hash=(int) Math.abs(Math.floor(key.hashCode())) % table.length;
+        int hash=(int) Math.abs((key.hashCode())) % table.length;
 
         return hash;
     }
@@ -175,23 +175,49 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V>,
 
     }
 
+    /**
+     * The getSize() function returns the size of an object.
+     * 
+     * @return The method is returning the value of the variable "size".
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * The function checks if a data structure is empty by comparing its size to zero.
+     * 
+     * @return The method is returning a boolean value, specifically whether the size variable is equal to 0.
+     */
     public boolean isEmpty(){
         return size==0;
     }
 
 
+    /**
+     * The function sets the value of the changeMessage variable.
+     * 
+     * @param changeMessage The parameter "changeMessage" is a String that represents the message to be set for a change.
+     */
     public void setChangeMessage(String changeMessage) {
         this.changeMessage = changeMessage;
     }
 
+    /**
+     * The function returns the change message.
+     * 
+     * @return The method is returning a String value.
+     */
     public String getChangeMessage() {
         return changeMessage;
     }
 
+    /**
+     * The function modifies the value associated with a given key in a hash table, throwing an exception if the key does not exist.
+     * 
+     * @param key The key is the identifier used to locate the object in the hash table. It is used to determine the position of the object in the hash table and retrieve or modify its value.
+     * @param value The value parameter is the new value that you want to set for the object with the specified key.
+     */
     public void modify(K key, V value) throws exceptionTheObjectDoesntExist {
         NodeHash<K, V> nodeHash = getNodeHash(key);
         if (nodeHash != null) {
@@ -201,6 +227,11 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V>,
         }
     }
 
+   /**
+    * The function is used to create a clone of a HashTable object.
+    * 
+    * @return The method is returning a clone of the HashTable object.
+    */
     @Override
     public HashTable<K,V> clone(){
         HashTable<K,V> clone = new HashTable<>(table.length);
@@ -221,6 +252,11 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V>,
         }
         return clone;
     }
+    /**
+     * The toString() function iterates through the hash table and returns a string representation of the values stored in the table.
+     * 
+     * @return The method is returning a string representation of the values stored in the hash table.
+     */
     public String toString(){
         String message = "";
         for (int i = 0; i < table.length; i++) {
