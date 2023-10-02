@@ -3,9 +3,9 @@ package model;
 import dataStructures.HashTable;
 import dataStructures.Heap;
 
+import dataStructures.Node;
 import dataStructures.Queue;
 import exceptions.*;
-import java.util.List;
 
 public class Agenda implements Cloneable{
 
@@ -58,8 +58,7 @@ public class Agenda implements Cloneable{
             Task task = searchTask(id);
             tasks.remove(id);
             if (task.getPriority() == 0) {
-
-                nonPriorityTasks.delete(task);
+                removeNonPriorityTask(task);
             }else{
                 priorityTasks.delete(task);
             }
@@ -71,6 +70,33 @@ public class Agenda implements Cloneable{
         }
     }
 
+    public boolean removeNonPriorityTask(Task task) throws exceptionThisDataStructureIsVoid {
+
+        try {
+            Queue<Task> tempQueue = new Queue<>();
+            while (!nonPriorityTasks.isEmpty()) {
+                Task elemento = nonPriorityTasks.poll();
+                if (!elemento.equals(task)) {
+                    tempQueue.offer(elemento);
+                }
+            }
+
+            if (tempQueue.size() == nonPriorityTasks.size()) {
+                return false;
+            }
+
+            int aux = tempQueue.size();
+            for (int i = 0; i < aux; i++) {
+                nonPriorityTasks.offer(tempQueue.poll());
+            }
+            return true;
+
+        } catch (exceptionThisDataStructureIsVoid e){
+            return false;
+        }
+
+    }
+
     public boolean modifyTask(Integer id, String title, String description, String date, Integer priority) throws exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist{
         try {
             Task task = searchTask(id);
@@ -78,7 +104,7 @@ public class Agenda implements Cloneable{
             tasks.modify(id, newTask);
             if (priority == 0) {
                 nonPriorityTasks.offer(newTask);
-                nonPriorityTasks.delete(task);
+                removeNonPriorityTask(task);
             }else{
                 priorityTasks.delete(task);
                 priorityTasks.insert(priority, newTask);
