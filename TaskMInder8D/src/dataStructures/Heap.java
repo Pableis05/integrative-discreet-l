@@ -94,18 +94,6 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
     }
 
     @Override
-    public boolean delete(V node) {
-        boolean ans = false;
-        for (int i = 1; i < arr.size(); i++) {
-            if(arr.get(i).getNode().equals(node)){
-                arr.remove(i);
-                ans = true;
-            }
-        }
-        return ans;
-    }
-
-    @Override
     public String show() {
         String ans = "";
         for (int i = 1; i < arr.size() ; i++) {
