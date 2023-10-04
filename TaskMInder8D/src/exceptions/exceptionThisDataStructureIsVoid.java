@@ -3,7 +3,7 @@ package exceptions;
 public class exceptionThisDataStructureIsVoid extends Exception{
 
     public exceptionThisDataStructureIsVoid(){
-        super("The list is void");
+        super("The data structure is empty");
 
     }
     public String getMessage(){
