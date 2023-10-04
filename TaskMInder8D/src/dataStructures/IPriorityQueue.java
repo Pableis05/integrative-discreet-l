@@ -18,5 +18,11 @@ public interface IPriorityQueue<K> {
 
     public void heapSort();
 
+    public boolean isEmpty();
 
+    public int size();
+
+    public void buildMaxHeapify();
+
+    public void maxHeapify(int index);
 }

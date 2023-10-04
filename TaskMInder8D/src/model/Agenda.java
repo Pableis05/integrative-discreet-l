@@ -23,8 +23,6 @@ public class Agenda implements Cloneable{
 
     private int count;
 
-
-
     private String changeMessage;
 
     public Agenda(){
@@ -173,7 +171,14 @@ public class Agenda implements Cloneable{
             Task newTask = new Task(id, title, description, date, priority);
             tasks.modify(id, newTask);
 
-            if (priority == 0) {
+            if(task.getPriority() == 0 && priority != 0){
+                removeNonPriorityTask(task);
+                priorityTasks.insert(priority, newTask);
+            }else if(task.getPriority() != 0 && priority == 0){
+                removePriorityTask(task);
+                nonPriorityTasks.offer(newTask);
+            }
+            else if (priority == 0) {
                 modifyTaskNonPriorityTask(task, newTask);
             }else{
                 modifyTaskPriorityTask(task, newTask);
@@ -238,16 +243,6 @@ public class Agenda implements Cloneable{
         return task;
     }
 
-    /**
-     * The function returns a string representation of a list of tasks.
-     * 
-     * @return The method is returning a string representation of the tasks.
-     */
-    public String showTasks() {
-        String message = tasks.toString();
-        return message;
-    }
-
    /**
     * The function returns a HashTable containing tasks, with Integer keys and Task values.
     * 
@@ -274,8 +269,7 @@ public class Agenda implements Cloneable{
      */
     @Override
     public String toString() {
-        int auxCount = count;
-        return "Agenda tasks\n" + tasks + "\nnonPriorityTasks=\n" + printNonPriorityTasks() + "\npriorityTasks=\n" + printPriorityTasks() + "\ncount=" + --auxCount;
+        return "\nYour priorityTasks\n" + printPriorityTasks() + "\nYour nonPriorityTasks\n" + printNonPriorityTasks();
     }
 
     /**
@@ -298,7 +292,7 @@ public class Agenda implements Cloneable{
         Queue<Task> clone = nonPriorityTasks.clone();
         while(!clone.isEmpty()){
             try {
-                msg += clone.poll().toString() + "\n";
+                msg += " --> "+clone.poll().toString() + "\n";
             } catch (exceptionThisDataStructureIsVoid e) {
                 e.printStackTrace();
             }
@@ -317,13 +311,11 @@ public class Agenda implements Cloneable{
 
         while(!clone.isEmpty()){
             try {
-                msg += clone.extractMax().toString() + "\n";
+                msg += " >>> " + clone.extractMax().toString() + "\n";
             }catch (exceptionThisDataStructureIsVoid e){
-                msg="The priority tasks is empty";
+
             }
         }
-        if(msg.equals("") )
-            msg = "The priority tasks is empty";
 
         return msg;
     }

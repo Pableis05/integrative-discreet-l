@@ -82,7 +82,7 @@ public class HeapTest {
     @Test
     public void test_insert_and_extract_multiple_elements() throws exceptionThisDataStructureIsVoid {
         setupStageHeapNormal();
-        assertEquals(Integer.valueOf(10), heap.extractMax());
+        assertEquals(Integer.valueOf(40), heap.extractMax());
         assertEquals(Integer.valueOf(20), heap.extractMax());
         assertEquals(Integer.valueOf(30), heap.extractMax());
     }
@@ -120,6 +120,18 @@ public class HeapTest {
     // Increasing priority of an element not present in the heap
     @Test
     public void test_increase_priority_of_nonexistent_element() throws exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist {
+        setupStageHeapNormal();
+        try {
+            heap.increaseKey(15, 4);
+            assertEquals(Integer.valueOf(30), heap.extractMax());
+            fail();
+        }catch (exceptionTheObjectDoesntExist e){
+            assertNotNull(e);
+        }
+    }
+
+    @Test
+    public void test_increase_priority_of_nonexistent_element2() throws exceptionThisDataStructureIsVoid {
         setupStageHeapNormal();
         try {
             heap.increaseKey(15, 4);

@@ -20,7 +20,13 @@ public class ControllerAgenda {
         saveState("Add new task: " + title);
     }
 
-    public void removeTask(Integer id) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
+    public void removeTask(Integer id) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
+        if(searchTask(id) == null){
+            throw new exceptionTheObjectDoesntExist("The task with id: " + id + " doesn't exist");
+        }
+        if(getAgenda().getTasks().isEmpty()){
+           throw new exceptionThisDataStructureIsVoid();
+        }
         saveState("remove task by title: " + searchTask(id).getTitle());
         agenda.removeTask(id);
     }
@@ -48,11 +54,16 @@ public class ControllerAgenda {
         undoStack.push(copyOfAgenda);
     }
 
-    public void undo() {
-        if (undoStack.size() > 1){
+    public String undo() {
+        String msg = "";
+        if (undoStack.size() > 2){
             undoStack.pop();
             agenda = undoStack.peek();
-        }
+            msg = "Undo version: " + agenda.getChangeMessage();
+        }else
+            msg = "There is no more versions to undo";
+
+        return msg;
     }
     public Agenda getAgenda() {
         return agenda;
