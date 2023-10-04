@@ -44,7 +44,7 @@ public class ControllerAgenda {
     private void saveState(String changeMessage) {
         Agenda copyOfAgenda = agenda.clone();
         copyOfAgenda.setCounter(agenda.getCount());
-        copyOfAgenda.getTasks().setChangeMessage(changeMessage);
+        copyOfAgenda.setChangeMessage(changeMessage);
         undoStack.push(copyOfAgenda);
     }
 

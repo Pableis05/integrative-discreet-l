@@ -2,8 +2,6 @@ package model;
 
 import dataStructures.HashTable;
 import dataStructures.Heap;
-
-import dataStructures.Node;
 import dataStructures.Queue;
 import exceptions.*;
 
@@ -22,40 +20,26 @@ public class Agenda implements Cloneable{
     private Heap<Task> priorityTasks;
     /**ount: is declaring a private instance variable named `count` of type `int`. This variable is used to keep track of the number of tasks in the agenda. It is incremented every time a new task is added to the agenda.
  */
+
     private int count;
 
-    /**
-     * The function sets the tasks hashtable for a given object.
-     * 
-     * @param tasks The "tasks" parameter is a HashTable data structure that stores Task objects. The keys in the HashTable are of type Integer, and the values are of type Task.
-     */
-    public void setTasks(HashTable<Integer, Task> tasks) {
-        this.tasks = tasks;
-    }
 
-    /**
-     * The function sets the non-priority tasks queue for a given object.
-     * 
-     * @param nonPriorityTasks The nonPriorityTasks parameter is a Queue of Task objects.
-     */
-    public void setNonPriorityTasks(Queue<Task> nonPriorityTasks) {
-        this.nonPriorityTasks = nonPriorityTasks;
-    }
 
-  /**
-   * The function sets the priorityTasks heap for a given object.
-   * 
-   * @param priorityTasks The parameter "priorityTasks" is of type Heap<Task>. It is used to set the value of the instance variable "priorityTasks" in the current object.
-   */
-    public void setPriorityTasks(Heap<Task> priorityTasks) {
-        this.priorityTasks = priorityTasks;
-    }
+    private String changeMessage;
 
     public Agenda(){
         tasks = new HashTable<Integer, Task>(100);
         nonPriorityTasks = new Queue<Task>();
         priorityTasks = new Heap<Task>();
         count = 1;
+    }
+
+    public Agenda(HashTable<Integer,Task> tasks,Queue<Task> nonPriorityTasks, Heap<Task> priorityTasks, int count, String changeMessage) {
+        this.tasks = tasks;
+        this.nonPriorityTasks = nonPriorityTasks;
+        this.priorityTasks = priorityTasks;
+        this.count = count;
+        this.changeMessage = changeMessage;
     }
 
 /**
@@ -69,7 +53,7 @@ public class Agenda implements Cloneable{
  */
     public boolean addTask(String title, String description, String date, Integer priority){
 
-        Task task = new Task(count, description, title, date, priority);
+        Task task = new Task(count,  title, description, date, priority);
 
         try {
             tasks.add(count, task);
@@ -92,7 +76,6 @@ public class Agenda implements Cloneable{
  * @return The method is returning a boolean value. It returns true if the task with the given id was successfully removed, and false if the task does not exist or if the data structure is empty.
  */
 
-
     public boolean removeTask(Integer id){
         try {
             Task task = searchTask(id);
@@ -111,7 +94,7 @@ public class Agenda implements Cloneable{
     }
 
 
-    public boolean removePriorityTask(Task task) {
+    private boolean removePriorityTask(Task task) {
         Heap<Task> tempHeap = new Heap<>();
         int sizePriority = priorityTasks.size();
         try {
@@ -140,14 +123,14 @@ public class Agenda implements Cloneable{
                 priorityTasks.insert(element.getPriority(), element);
 
             } catch (exceptionThisDataStructureIsVoid e) {
-                throw new RuntimeException(e);
+                return false;
             }
         }
         return true;
 
     }
 
-    public boolean removeNonPriorityTask(Task task) throws exceptionThisDataStructureIsVoid {
+    private boolean removeNonPriorityTask(Task task) throws exceptionThisDataStructureIsVoid {
 
         try {
             Queue<Task> tempQueue = new Queue<>();
@@ -277,16 +260,12 @@ public class Agenda implements Cloneable{
     /**
      * The function returns the value of the count variable.
      * 
-     * @return The method is returning the value of the variable "count".
+     * @return The method is returning the value of the variable count the task of Agenda.
      */
     public int getCount() {
         return count;
     }
 
-    public void setCounter(int counter) {
-    // The code snippet you provided is a setter method for the `count` variable in the `Agenda` class. It sets the value of `count` to the value passed as a parameter (`counter`).
-        this.count = counter;
-    }
 
     /**
      * The toString() function returns a string representation of the Agenda object, including the tasks, non-priority tasks, priority tasks, and the count.
@@ -305,16 +284,8 @@ public class Agenda implements Cloneable{
      * @return The method is returning a clone of the Agenda object.
      */
     public Agenda clone(){
-        try {
-            Agenda clone = (Agenda) super.clone();
-            clone.setCounter(this.count);
-            clone.setTasks(this.tasks.clone());
-            clone.setNonPriorityTasks(this.nonPriorityTasks.clone());
-            clone.setPriorityTasks(this.priorityTasks.clone());
-            return clone;
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
-        }
+        Agenda clone = new Agenda(tasks.clone(), nonPriorityTasks.clone(), priorityTasks.clone(), count, changeMessage);
+        return clone;
     }
 
     /**
@@ -351,10 +322,23 @@ public class Agenda implements Cloneable{
                 msg="The priority tasks is empty";
             }
         }
+        if(msg.equals("") )
+            msg = "The priority tasks is empty";
+
         return msg;
     }
 
+    public void setCounter(int count) {
+        this.count = count;
+    }
 
+    public String getChangeMessage() {
+        return changeMessage;
+    }
+
+    public void setChangeMessage(String changeMessage) {
+        this.changeMessage = changeMessage;
+    }
 
 
 }

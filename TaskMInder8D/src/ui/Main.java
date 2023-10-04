@@ -46,7 +46,7 @@ public class Main {
                     break;
                 case 5:
                     controllerAgenda.undo();
-                    System.out.println("Undo version, " + controllerAgenda.getAgenda().getTasks().getChangeMessage());
+                    System.out.println("Undo version, " + controllerAgenda.getAgenda().getChangeMessage());
                     break;
                 case 0:
                     System.out.println("Exit");

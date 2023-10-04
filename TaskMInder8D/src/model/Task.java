@@ -1,5 +1,4 @@
 package model;
-import java.util.List;
 public class Task implements Cloneable{
 
     /**id; is declaring a private integer variable named `id` in the `Task` class. This variable is used to store the unique identifier of a task object.
