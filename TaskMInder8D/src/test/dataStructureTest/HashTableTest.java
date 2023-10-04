@@ -24,7 +24,7 @@ public class HashTableTest {
             hashTable.add(2.4, "Lau");
             hashTable.add(4.5, ":D");
             hashTable.add(6.5, "Vaina");
-            hashTable.add(8.5, "TQM");//Traigame Queso Mañana
+            hashTable.add(8.5, "TQM");
 
     }
 

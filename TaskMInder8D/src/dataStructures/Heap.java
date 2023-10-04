@@ -34,16 +34,15 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
     public void maxHeapify(int index) {
         int l = 2*index;
         int r = 2*index + 1;
-        int largest;
-        if(l <= arr.size()-1 && arr.get(l).getPriority() > arr.get(index).getPriority()) {
+        int largest=index;
+
+        if(l <= arr.size()-1 && arr.get(l).getPriority() > arr.get(index).getPriority())  {
             largest = l;
-        } else {
-            largest = index;
         }
         if(r<= arr.size()-1 && arr.get(r).getPriority()  > arr.get(largest).getPriority() ) {
             largest = r;
         }
-        if(largest != index) {
+        if(largest != index ) {
             NodePriorityQueue<V> temp1= arr.get(index);
             NodePriorityQueue<V> temp2= arr.get(largest);
             arr.set(index,temp2);
@@ -63,6 +62,7 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
     /**
      * The function performs a heap sort on an array by building a max heap and repeatedly swapping the root element with the last element and then heapifying the remaining elements.
      */
+    @Override
     public void heapSort() {
         buildMaxHeapify();
 
@@ -103,21 +103,21 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
      */
     @Override
     public void increaseKey(V node, int newPriority) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
+        if(isEmpty()){
+            throw new exceptionThisDataStructureIsVoid();
+        }
         int index = -1;
         for (int i = 1; i < arr.size(); i++) {
             if(arr.get(i).getNode().equals(node)){
                 index = i;
             }
         }
-        if(newPriority > arr.get(index).getPriority()) {
-            arr.get(index).setPriority(arr.get(index).getPriority()+newPriority);
-            buildMaxHeapify();
-        }
         if(index==-1){
             throw new exceptionTheObjectDoesntExist(node+"");
         }
-        if(isEmpty()){
-            throw new exceptionThisDataStructureIsVoid();
+        if(newPriority > arr.get(index).getPriority()) {
+            arr.get(index).setPriority(arr.get(index).getPriority()+newPriority);
+            buildMaxHeapify();
         }
     }
 
@@ -133,18 +133,6 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
         for (int i = 1; i < arr.size(); i++) {
             if(arr.get(i).getNode().equals(node)){
                 ans = arr.get(i).getNode();
-            }
-        }
-        return ans;
-    }
-
-
-    public boolean delete(V node) {
-        boolean ans = false;
-        for (int i = 1; i < arr.size(); i++) {
-            if(arr.get(i).getNode().equals(node)){
-                arr.remove(i);
-                ans = true;
             }
         }
         return ans;

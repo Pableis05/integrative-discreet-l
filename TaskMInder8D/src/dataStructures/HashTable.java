@@ -8,7 +8,6 @@ import java.util.Objects;
 public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V>, Cloneable{
     private   NodeHash<K,V>[] table;
     private   int size;
-    private String changeMessage;
     public HashTable(int capacity){
         capacityHashTable(capacity);
         size=0;
@@ -141,11 +140,6 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V>,
     public boolean remove(K key) throws exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist{
         boolean removed = false;
         if(size==0){
-
-
-
-
-
             throw new exceptionThisDataStructureIsVoid();
         }
 
@@ -203,23 +197,9 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V>,
     }
 
 
-    /**
-     * The function sets the value of the changeMessage variable.
-     * 
-     * @param changeMessage The parameter "changeMessage" is a String that represents the message to be set for a change.
-     */
-    public void setChangeMessage(String changeMessage) {
-        this.changeMessage = changeMessage;
-    }
 
-    /**
-     * The function returns the change message.
-     * 
-     * @return The method is returning a String value.
-     */
-    public String getChangeMessage() {
-        return changeMessage;
-    }
+
+
 
     /**
      * The function modifies the value associated with a given key in a hash table, throwing an exception if the key does not exist.

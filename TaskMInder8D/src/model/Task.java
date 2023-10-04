@@ -1,5 +1,4 @@
 package model;
-import java.util.List;
 public class Task implements Cloneable{
 
     /**id; is declaring a private integer variable named `id` in the `Task` class. This variable is used to store the unique identifier of a task object.
@@ -78,7 +77,7 @@ public class Task implements Cloneable{
      * @return The toString() method is returning a string representation of a Task object. The string includes the values of the id, title, description, date, and priority properties of the Task object.
      */
     public String toString() {
-        return "Task[ " + "id=" + id + ", Title=" + title + ", description=" + description + ", date=" + date + ", priority=" + priority + " ]";
+        return "Task [ " + "ID: " + id + "/ Title: " + title + "/ Description: " + description + "/ Date: " + date + "/ Priority: " + priority + " ]";
     }
 
 }
