@@ -296,7 +296,7 @@ public class Agenda implements Cloneable{
     @Override
     public String toString() {
         int auxCount = count;
-        return "Agenda tasks\n" + tasks + "\nnonPriorityTasks=\n" + printNonPriorityTasks() + "\npriorityTasks=\n" + printPriorityTasks() + "\ncount=" + --auxCount;
+        return "\nnonPriorityTasks=\n" + printNonPriorityTasks() + "\npriorityTasks=\n" + printPriorityTasks();
     }
 
     /**

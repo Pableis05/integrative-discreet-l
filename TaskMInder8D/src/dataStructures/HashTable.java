@@ -141,6 +141,11 @@ public class HashTable <K extends Comparable<K>, V> implements IHashTable<K, V>,
     public boolean remove(K key) throws exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist{
         boolean removed = false;
         if(size==0){
+
+
+
+
+
             throw new exceptionThisDataStructureIsVoid();
         }
 

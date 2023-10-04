@@ -1,138 +1,106 @@
 package ui;
 
-import java.util.Scanner;
-
+import javax.swing.JOptionPane;
 import exceptions.exceptionTheObjectDoesntExist;
 import exceptions.exceptionThisDataStructureIsVoid;
 import model.ControllerAgenda;
+
 public class Main {
 
-    private Scanner sc;
     private ControllerAgenda controllerAgenda;
 
     public Main() {
-        sc = new Scanner(System.in);
         controllerAgenda = new ControllerAgenda();
     }
 
-    public static void main(String[] args)  throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
+    public static void main(String[] args) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
         Main m = new Main();
         m.menu();
     }
 
     public void menu() throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
         int option = 0;
+        JOptionPane.showMessageDialog(null, "WELCOME TO YOUR TASK MANAGER");
         do {
-            System.out.println("1. Add a task");
-            System.out.println("2. Remove a task");
-            System.out.println("3. modify a task");
-            System.out.println("4. Show all tasks");
-            System.out.println("5. Undo version");
-            System.out.println("0 Exit");
-            option = sc.nextInt();
-            sc.nextLine();
+            String[] options = {"Add a task", "Remove a task", "Modify a task", "Show all tasks", "Undo version", "Exit"};
+            option = JOptionPane.showOptionDialog(null, "Select an option", "Menu", 0, JOptionPane.INFORMATION_MESSAGE, null, options, null);
             switch(option) {
-                case 1:
+                case 0:
                     addTask();
                     break;
-                case 2:
+                case 1:
                     removeTask();
                     break;
-                case 3:
+                case 2:
                     modifyTask();
                     break;
-                case 4:
+                case 3:
                     showTasks();
                     break;
-                case 5:
+                case 4:
                     controllerAgenda.undo();
-                    System.out.println("Undo version, " + controllerAgenda.getAgenda().getTasks().getChangeMessage());
+                    JOptionPane.showMessageDialog(null, "Undo version, " + controllerAgenda.getAgenda().getTasks().getChangeMessage());
                     break;
-                case 0:
-                    System.out.println("Exit");
+                case 5:
+                    JOptionPane.showMessageDialog(null, "Exit");
                     break;
                 default:
-                    System.out.println("Invalid option");
+                    JOptionPane.showMessageDialog(null, "Invalid option");
                     break;
             }
-        } while(option != 0);
+        } while(option != 5);
     }
 
     public void addTask() {
-        System.out.println("Enter the title of the task");
-        String title = sc.nextLine();
-        System.out.println("Enter the description of the task");
-        String description = sc.nextLine();
-        System.out.println("Enter the date of the task");
-        String date = sc.nextLine();
-        System.out.println("Enter the priority of the task");
-        int priority = sc.nextInt();
-        sc.nextLine();
+        String title = JOptionPane.showInputDialog("Enter the title of the task");
+        String description = JOptionPane.showInputDialog("Enter the description of the task");
+        String date = JOptionPane.showInputDialog("Enter the date of the task");
+        int priority = Integer.parseInt(JOptionPane.showInputDialog("Enter the priority of the task"));
         controllerAgenda.addTask(title, description, date, priority);
     }
 
-    public void removeTask() throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
-
-        System.out.println("Enter the id of the task");
-        int id = sc.nextInt();
-        sc.nextLine();
+    public void removeTask() throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
+        int id = Integer.parseInt(JOptionPane.showInputDialog("Enter the id of the task"));
         controllerAgenda.removeTask(id);
-
     }
 
     public void modifyTask() throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
-        System.out.println("Enter the id of the task");
-        int id = sc.nextInt();
-        sc.nextLine();
-        int option = -1;
+        int id = Integer.parseInt(JOptionPane.showInputDialog("Enter the id of the task"));
+
+        String[] options = {"Modify title", "Modify description", "Modify date", "Modify priority"};
+        int option = JOptionPane.showOptionDialog(null, "Select an option", "Modify Task", 0, JOptionPane.INFORMATION_MESSAGE, null, options, null);
+
         String title = controllerAgenda.searchTask(id).getTitle();
         String description = controllerAgenda.searchTask(id).getDescription();
         String date = controllerAgenda.searchTask(id).getDate();
         int priority = controllerAgenda.searchTask(id).getPriority();
 
-        do{
-            System.out.println("1. Modify title, 2. Modify description, 3. Modify date, 4. Modify priority, 0. Exit");
-            option = sc.nextInt();
-            switch (option){
+        String newValue = JOptionPane.showInputDialog("Enter the new value");
+
+        try {
+            switch (option) {
+                case 0:
+                    controllerAgenda.modifyTask(id, newValue, description, date, priority);
+                    break;
                 case 1:
-                    System.out.println("Enter the new title of the task");
-                    sc.nextLine();
-                    title = sc.nextLine();
+                    controllerAgenda.modifyTask(id, title, newValue, date, priority);
                     break;
                 case 2:
-                    System.out.println("Enter the new description of the task");
-                    sc.nextLine();
-                    description = sc.nextLine();
+                    controllerAgenda.modifyTask(id, title, description, newValue, priority);
                     break;
                 case 3:
-                    System.out.println("Enter the new date of the task");
-                    sc.nextLine();
-                    date = sc.nextLine();
-
+                    controllerAgenda.modifyTask(id, title, description, date, Integer.parseInt(newValue));
                     break;
-                case 4:
-                    System.out.println("Enter the new priority of the task");
-
-                    priority = sc.nextInt();
-                    sc.nextLine();
-                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Invalid option");
             }
-
-        }while (option != 0);
-        try{
-            controllerAgenda.modifyTask(id, title, description, date, priority);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
-
     }
 
     public void showTasks() {
-        System.out.println(controllerAgenda.showTasks());
+        JOptionPane.showMessageDialog(null, controllerAgenda.showTasks());
     }
-
-
-
 }
 
