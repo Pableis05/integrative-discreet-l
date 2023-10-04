@@ -6,11 +6,10 @@ import java.util.ArrayList;
 
 public class Heap<V> implements IPriorityQueue<V>, Cloneable{
 
-    private ArrayList<NodePriorityQueue<V>> arr;
+    private ArrayList<NodePriorityQueue<V>> heapArr;
 
-    public Heap(){
-        arr = new ArrayList<>();
-        arr.add(null);
+    public Heap() {
+        heapArr = new ArrayList<>(); heapArr.add(null);
     }
 
 
@@ -22,8 +21,19 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
      */
     @Override
     public void insert(int priority, V node) {
-        arr.add(new NodePriorityQueue(priority, node));
+        NodePriorityQueue<V> newNode = new NodePriorityQueue<>(priority, node);
+        heapArr.add(newNode);
         buildMaxHeapify();
+    }
+
+    /**
+     * The function "buildMaxHeapify" builds a max heap by calling the "maxHeapify" function on each element of the array in reverse order.
+     */
+    public void buildMaxHeapify() {
+
+        for(int i = heapArr.size()-1; i >=1 ;i--)
+            maxHeapify(i);
+
     }
 
     /**
@@ -32,32 +42,32 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
      * @param index The index parameter represents the index of the element in the heap that needs to be heapified.
      */
     public void maxHeapify(int index) {
-        int l = 2*index;
-        int r = 2*index + 1;
-        int largest=index;
+        int largest = index;
 
-        if(l <= arr.size()-1 && arr.get(l).getPriority() > arr.get(index).getPriority())  {
-            largest = l;
-        }
-        if(r<= arr.size()-1 && arr.get(r).getPriority()  > arr.get(largest).getPriority() ) {
-            largest = r;
-        }
-        if(largest != index ) {
-            NodePriorityQueue<V> temp1= arr.get(index);
-            NodePriorityQueue<V> temp2= arr.get(largest);
-            arr.set(index,temp2);
-            arr.set(largest,temp1);
+        int right = 2 * index + 1;
+
+        int left = 2 * index;
+
+        if (left <= heapArr.size() - 1 && heapArr.get(left).getPriority() > heapArr.get(index).getPriority())
+            largest = left;
+
+
+
+        if (right <= heapArr.size() - 1 && heapArr.get(right).getPriority() > heapArr.get(largest).getPriority())
+            largest = right;
+
+
+        if (largest != index) {
+            NodePriorityQueue<V> temp1 = heapArr.get(index);
+            NodePriorityQueue<V> temp2 = heapArr.get(largest);
+            heapArr.set(index, temp2);
+            heapArr.set(largest, temp1);
             maxHeapify(largest);
         }
+
+
     }
-    /**
-     * The function "buildMaxHeapify" builds a max heap by calling the "maxHeapify" function on each element of the array in reverse order.
-     */
-    public void buildMaxHeapify() {
-        for(int i= arr.size()-1; i >=1;i--){
-            maxHeapify(i);
-        }
-    }
+
 
     /**
      * The function performs a heap sort on an array by building a max heap and repeatedly swapping the root element with the last element and then heapifying the remaining elements.
@@ -65,11 +75,10 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
     @Override
     public void heapSort() {
         buildMaxHeapify();
-
-        for(int i = arr.size() - 1; i >= 1; i--) {
-            NodePriorityQueue<V> temp = arr.get(1);
-            arr.set(1, arr.get(i));
-            arr.set(i, temp);
+        for(int i = heapArr.size() - 1; i >= 1; i--) {
+            NodePriorityQueue<V> temp = heapArr.get(1);
+            heapArr.set(1, heapArr.get(i));
+            heapArr.set(i, temp);
             maxHeapify(1);
         }
     }
@@ -82,17 +91,25 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
      */
     @Override
     public V extractMax() throws exceptionThisDataStructureIsVoid{
-        V max=null;
-        if(arr.size() >=2) {
-            max = arr.get(1).getNode();
-            arr.set(1,arr.get(arr.size()-1));
-            arr.remove(arr.size()-1);
+
+        V highest = null;
+
+        if(heapArr.size() >=2) {
+
+            highest = heapArr.get(1).getNode();
+
+            heapArr.set(1,heapArr.get(heapArr.size()-1));
+
+            heapArr.remove(heapArr.size()-1);
+
             maxHeapify(1);
+
         }
-        if(max==null){
+
+        if(highest==null)
             throw new exceptionThisDataStructureIsVoid();
-        }
-        return max;
+
+        return highest;
     }
 
     /**
@@ -103,20 +120,24 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
      */
     @Override
     public void increaseKey(V node, int newPriority) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
-        if(isEmpty()){
+
+        if(isEmpty())
             throw new exceptionThisDataStructureIsVoid();
-        }
+
         int index = -1;
-        for (int i = 1; i < arr.size(); i++) {
-            if(arr.get(i).getNode().equals(node)){
+
+        for (int i = 1; i < heapArr.size(); i++) {
+            if(heapArr.get(i).getNode().equals(node))
                 index = i;
-            }
+
         }
-        if(index==-1){
+
+        if(index==-1)
             throw new exceptionTheObjectDoesntExist(node+"");
-        }
-        if(newPriority > arr.get(index).getPriority()) {
-            arr.get(index).setPriority(arr.get(index).getPriority()+newPriority);
+
+        if(newPriority > heapArr.get(index).getPriority()) {
+            heapArr.get(index).setPriority(heapArr.get(index).getPriority()+newPriority);
+
             buildMaxHeapify();
         }
     }
@@ -129,13 +150,16 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
      */
     @Override
     public V search(V node) {
-        V ans = null;
-        for (int i = 1; i < arr.size(); i++) {
-            if(arr.get(i).getNode().equals(node)){
-                ans = arr.get(i).getNode();
-            }
+
+        V search = null;
+
+        for (int i = 1; i < heapArr.size(); i++) {
+
+            if(heapArr.get(i).getNode().equals(node))
+                search = heapArr.get(i).getNode();
+
         }
-        return ans;
+        return search;
     }
 
     /**
@@ -145,11 +169,11 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
      */
     @Override
     public String show() {
-        String ans = "";
-        for (int i = 1; i < arr.size() ; i++) {
-            ans+= arr.get(i).getPriority() + " "+ arr.get(i).getNode() + "\n";
+        String msg = "";
+        for (int i = 1; i < heapArr.size() ; i++) {
+            msg+= heapArr.get(i).getPriority() + " "+ heapArr.get(i).getNode() + "\n";
         }
-        return ans;
+        return msg;
     }
 
     /**
@@ -159,11 +183,11 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
      */
     @Override
     public V showMax() {
-        if(arr.size()>1) {
-            return arr.get(1).getNode();
-        }else {
+        if(heapArr.size()>1)
+            return heapArr.get(1).getNode();
+        else
             return null;
-        }
+
     }
 
     /**
@@ -174,8 +198,8 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
     @Override
     public Heap<V> clone() {
         Heap<V> clone = new Heap<>();
-        for (int i = 1; i < arr.size(); i++) {
-            clone.insert(arr.get(i).getPriority(), arr.get(i).getNode());
+        for (int i = 1; i < heapArr.size(); i++) {
+            clone.insert(heapArr.get(i).getPriority(), heapArr.get(i).getNode());
         }
         return clone;
     }
@@ -186,7 +210,7 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
      * @return The size of the array.
      */
     public int size(){
-        return arr.size();
+        return heapArr.size();
     }
 
     /**
@@ -195,7 +219,7 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
      * @return The method is returning a boolean value, which indicates whether the "arr" list is empty or not. If the size of the list is 1, it means that the list only contains one element (which is not considered empty), so the method will return false. Otherwise, if the size of the list is greater than 1, it means that the list contains more than one element (which
      */
     public boolean isEmpty(){
-        return arr.size() == 1;
+        return heapArr.size() == 1;
     }
 
     /**
@@ -205,11 +229,16 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
      */
     public String toString() {
         String msg = "";
-        for (int i = 1; i < arr.size(); i++) {
+
+        for (int i = 1; i < heapArr.size(); i++) {
             try {
+
                 msg += extractMax() + "\n";
+
             } catch (exceptionThisDataStructureIsVoid e) {
+
                 msg=e.getMessage();
+
             }
         }
         return msg;
