@@ -40,8 +40,8 @@ public class AgendaTest {
     }
 
 
-    public void setUpMinderIsNormal(){
-        minder= new Agenda();
+    public void setUpMinderIsNormal() {
+        minder = new Agenda();
         minder.addTask("Aristizabal Lord of the night", "I should finish my book", "22-02-2024", 2);
         minder.addTask("Meeting with Client", "Prepare presentation", "15-03-2024", 1);
         minder.addTask("Grocery Shopping", "Buy groceries for the week", "25-02-2024", 0);
@@ -144,6 +144,75 @@ public class AgendaTest {
 
         }
     }
+
+    @Test
+    public void modifyTaskInMinderVoid() throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
+        setUpMinderIsVoid();
+        try {
+
+            boolean modified= minder.modifyTask(1,"Aristizabal Lord of the night", "I should finish my book", "22-02-2024", 2);
+            assertFalse("The task was not modified because the list is void",modified);
+        }catch (exceptionThisDataStructureIsVoid e){
+            assertNotNull(e);
+        }
+    }
+
+    @Test
+    public void modifyTaskInMinderNormal() throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
+        setUpMinderIsNormal();
+        String title="Hi, I am German";
+        String Description=" And the video at today";
+        String date="22-02-2025";
+        int priority=3;
+        boolean modified= minder.modifyTask(1,title, Description, date, priority);
+        assertTrue("The task was modified",modified);
+        Task task= minder.searchTask(1);
+        assertEquals("The task was modified",title,task.getTitle());
+        assertEquals("The task was modified",Description,task.getDescription());
+        assertEquals("The task was modified",date,task.getDate());
+        assertEquals("The task was modified",priority,task.getPriority());
+        ArrayList<Task> taskList= setUpTaskForUsed();
+        assertNotEquals("The task was modified",taskList.get(0).toString(),task.toString());
+        for (int i = 1; i < taskList.size(); i++) {
+                assertEquals("The task was not removed",taskList.get(i).toString(),minder.searchTask(i+1).toString());
+
+        }
+    }
+
+    @Test
+    public void modifyTaskInMinderAndThisDontExist() throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
+        setUpMinderIsNormal();
+        String title="Hi, I am German";
+        String Description=" And the video at today";
+        String date="22-02-2025";
+        int priority=3;
+        boolean modified = minder.modifyTask(100, title, Description, date, priority);
+        assertFalse("The task was not modified because the task dont exist", modified);
+    }
+
+    @Test
+    public void ClonedAgenda(){
+        setUpMinderIsNormal();
+        Agenda clone= minder.clone();
+        assertEquals("The agenda was cloned",minder.toString(),clone.toString());
+        assertFalse("The agenda was cloned",minder==clone);
+    }
+    @Test
+    public void CloneadWithElementsWithTheSameContentDifferentReference() throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
+        setUpMinderIsNormal();
+
+        Agenda clone= minder.clone();
+        ArrayList<Task> taskList= setUpTaskForUsed();
+
+        for (int i = 0; i < taskList.size(); i++) {
+            assertEquals("The agenda was cloned",taskList.get(i).toString(),clone.searchTask(i+1).toString());
+            assertFalse("The agenda was cloned",taskList.get(i)==clone.searchTask(i+1));
+        }
+    }
+
+
+
+
 
 
 
