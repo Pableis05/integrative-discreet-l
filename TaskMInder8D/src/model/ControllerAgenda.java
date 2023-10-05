@@ -11,7 +11,7 @@ public class ControllerAgenda {
     public ControllerAgenda(){
         agenda = new Agenda();
         undoStack = new Stack<>();
-        undoStack.push(agenda);
+        saveState("Basic initial version");
 
     }
 
@@ -56,7 +56,7 @@ public class ControllerAgenda {
 
     public String undo() {
         String msg = "";
-        if (undoStack.size() > 2){
+        if (undoStack.size() > 1){
             undoStack.pop();
             agenda = undoStack.peek();
             msg = "Undo version: " + agenda.getChangeMessage();
