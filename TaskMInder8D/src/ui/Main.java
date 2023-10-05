@@ -46,7 +46,7 @@ public class Main {
                     JOptionPane.showMessageDialog(null, controllerAgenda.undo());
                     break;
                 case 5:
-                    JOptionPane.showMessageDialog(null, "Exit");
+                    JOptionPane.showMessageDialog(null, "Thank you for using the program");
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Invalid option");
