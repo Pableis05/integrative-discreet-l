@@ -5,8 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import exceptions.exceptionThisDataStructureIsVoid;
 
-public class StackTest {
-
+public class  StackTest {
     private Stack<String> stack;
 
     private void setupStage5(){
@@ -18,7 +17,6 @@ public class StackTest {
         stack.push("Jackson");
         stack.push("is very");
         stack.push("Amazing");
-
     }
 
     @Test
@@ -44,15 +42,19 @@ public class StackTest {
         }catch (exceptionThisDataStructureIsVoid e) {
             assertNotNull(e);
         }
-
     }
 
     @Test
-    public void removeFrontValueInStack() throws exceptionThisDataStructureIsVoid {
+    public void removeFrontValueInStack() {
         setupStage6();
-        String top=stack.pop();
-        assertEquals("Amazing",top);
-        assertNotEquals(top,stack.top());
+
+        try {
+            String top=stack.pop();
+            assertEquals("Amazing",top);
+            assertNotEquals(top,stack.top());
+        }catch (exceptionThisDataStructureIsVoid e) {
+            fail();
+        }
     }
 
     @Test
@@ -67,23 +69,32 @@ public class StackTest {
     }
 
     @Test
-    public void returnTopValueInStack() throws exceptionThisDataStructureIsVoid {
+    public void returnTopValueInStack()  {
         setupStage6();
-        String top=stack.top();
+        String top= null;
+        try {
+            top = stack.top();
+        } catch (exceptionThisDataStructureIsVoid e) {
+            fail();
+        }
         assertEquals("Amazing",top);
     }
 
     @Test
-    public void removeAllValuesInStackMustBeEmpty() throws exceptionThisDataStructureIsVoid {
+    public void removeAllValuesInStackMustBeEmpty() {
         setupStage6();
-        stack.pop();
-        stack.pop();
-        stack.pop();
-        stack.pop();
+        try {
+            stack.pop();
+            stack.pop();
+            stack.pop();
+            stack.pop();
+        }catch (exceptionThisDataStructureIsVoid e) {
+            fail();
+        }
         assertTrue("Exception the list is void",stack.isEmpty());
     }
     @Test
-    public void StacksSizeSameAsValuesAdded() throws exceptionThisDataStructureIsVoid {
+    public void StacksSizeSameAsValuesAdded()  {
         setupStage6();
         stack.push("Beat beat");
         int size=stack.size();
@@ -101,13 +112,9 @@ public class StackTest {
             while (!stack.isEmpty())
                 assertEquals("The values of the object mush be the same: ",stack.pop(),clone.pop());
         }catch (exceptionThisDataStructureIsVoid e) {
-            throw new RuntimeException(e);
+            fail();
         }
         assertTrue("The object must be empty: ",stack.isEmpty());
     }
-
-
-
-
 
 }

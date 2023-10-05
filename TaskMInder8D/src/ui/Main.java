@@ -18,7 +18,7 @@ public class Main {
         m.menu();
     }
 
-    public void menu() throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
+    public void menu() {
         int option = -1;
         JOptionPane.showMessageDialog(null, "WELCOME TO YOUR TASK MANAGER");
 
@@ -133,7 +133,7 @@ public class Main {
 
     }
 
-    public void modifyTask() throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid {
+    public void modifyTask()  {
         try {
             String idString;
             do {

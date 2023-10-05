@@ -15,49 +15,74 @@ public class HashTableTest {
         hashTable = new HashTable<Double,String >(10);
     }
 
-    private void setupStage2()throws exceptionObjectAlredyExistWithThatKey {
+    private void setupStage2() {
          hashTable = new HashTable<>(10);
 
-            hashTable.add(0.3, "Hola");
-            hashTable.add(0.4, "Juan");
-            hashTable.add(2.0, "Monitor");
-            hashTable.add(2.4, "Lau");
-            hashTable.add(4.5, ":D");
-            hashTable.add(6.5, "Vaina");
-            hashTable.add(8.5, "TQM");
+         try {
+             hashTable.add(0.3, "Hola");
+             hashTable.add(0.4, "Juan");
+             hashTable.add(2.0, "Monitor");
+             hashTable.add(2.4, "Lau");
+             hashTable.add(4.5, ":D");
+             hashTable.add(6.5, "Vaina");
+             hashTable.add(8.5, "TQM");
+         }catch (exceptionObjectAlredyExistWithThatKey e) {
+             fail();
+         }
+
 
     }
 
-    private void setupStageWithColosion()throws exceptionObjectAlredyExistWithThatKey {
+    private void setupStageWithColosion() {
         setupStage2();
-        hashTable.add(1.6, "Alejadro Magno");
-        hashTable.add(14.12, "Aurelio");
-        hashTable.add(1.37,"Aristizabal Lord of the Night");
+        try {
+            hashTable.add(1.6, "Alejadro Magno");
+            hashTable.add(14.12, "Aurelio");
+            hashTable.add(1.37,"Aristizabal Lord of the Night");
+        }catch (exceptionObjectAlredyExistWithThatKey e) {
+            fail();
+        }
+
 
     }
 
         @Test
-        public void addObjectWithKeyBMajorThanCapacity() throws exceptionObjectAlredyExistWithThatKey{
+        public void addObjectWithKeyBMajorThanCapacity() {
             setupStage1();
             boolean added;
-            added = hashTable.add(11.0, "Hola");
+            try {
 
-            assertTrue(added);
+                added = hashTable.add(11.0, "Hola");
+                assertTrue(added);
+            }catch (exceptionObjectAlredyExistWithThatKey e) {
+                fail();
+            }
         }
+
         @Test
-        public void addObjectWithCollision () throws exceptionObjectAlredyExistWithThatKey {
+        public void addObjectWithCollision ()  {
             setupStageWithColosion();
-            boolean added;
-            added = hashTable.add(0.36, "Marco");
-            assertEquals("The nodes haves the same positon",hashTable.hash(0.36),hashTable.hash(1.6),hashTable.hash(14.12));
-            assertEquals("The nodes haves the same positon",hashTable.hash(0.36),hashTable.hash(1.37));
-            assertTrue(added);
+            try{
+                boolean added;
+                added = hashTable.add(0.36, "Marco");
+                assertEquals("The nodes haves the same positon",hashTable.hash(0.36),hashTable.hash(1.6),hashTable.hash(14.12));
+                assertEquals("The nodes haves the same positon",hashTable.hash(0.36),hashTable.hash(1.37));
+                assertTrue(added);
+            }catch (exceptionObjectAlredyExistWithThatKey e) {
+                fail();
+            }
+
         }
 
         @Test
-        public void addObjectWithCollisionAndKeyAlreadyExist () throws exceptionObjectAlredyExistWithThatKey {
+        public void addObjectWithCollisionAndKeyAlreadyExist () {
                 setupStage2();
-                hashTable.add(0.4, "Alejadro Magno");
+                try{
+
+                    hashTable.add(0.4, "Alejadro Magno");
+                }catch (exceptionObjectAlredyExistWithThatKey e) {
+                    fail();
+                }
                 try {
                     hashTable.add(0.4, "MonitorGod");
                     fail();
@@ -74,25 +99,35 @@ public class HashTableTest {
             } catch (exceptionThisDataStructureIsVoid e) {
                 assertNotNull("Exception list is void",e);
             } catch (exceptionTheObjectDoesntExist e) {
-                throw new RuntimeException(e);
+                fail();
             }
 
         }
 
     @Test
-    public void searchObjectInList() throws exceptionThisDataStructureIsVoid, exceptionObjectAlredyExistWithThatKey, exceptionTheObjectDoesntExist{
+    public void searchObjectInList(){
         setupStage2();
-        String value = hashTable.search(8.5);
-        assertEquals("TQM",value);
+        try {
+            String value = hashTable.search(8.5);
+            assertEquals("TQM",value);
+
+        }catch (exceptionThisDataStructureIsVoid | exceptionTheObjectDoesntExist e) {
+            fail();
+        }
+
     }
     @Test
-    public void searchObjectInListWithCollision() throws exceptionThisDataStructureIsVoid, exceptionObjectAlredyExistWithThatKey, exceptionTheObjectDoesntExist {
+    public void searchObjectInListWithCollision() {
         setupStageWithColosion();
-        String value = hashTable.search(14.12);
-        assertEquals("Aurelio",value);
+        try {
+            String value = hashTable.search(14.12);
+            assertEquals("Aurelio",value);
+        }catch (exceptionThisDataStructureIsVoid | exceptionTheObjectDoesntExist e) {
+            fail();
+        }
     }
     @Test
-    public void searchObjectDoesntExistInList() throws exceptionObjectAlredyExistWithThatKey {
+    public void searchObjectDoesntExistInList()  {
         setupStage2();
         try {
             hashTable.search(0.26);
@@ -100,7 +135,7 @@ public class HashTableTest {
         } catch (exceptionTheObjectDoesntExist e) {
             assertNotNull("Exception object doesnt exist",e);
         } catch (exceptionThisDataStructureIsVoid e) {
-            throw new RuntimeException(e);
+            fail();
         }
 
     }
@@ -114,12 +149,12 @@ public class HashTableTest {
         } catch (exceptionThisDataStructureIsVoid e) {
             assertNotNull("Exception list is void",e);
         } catch (exceptionTheObjectDoesntExist e) {
-            throw new RuntimeException(e);
+            fail();
         }
 
     }
     @Test
-    public void removeObjectDoesntExistInList() throws exceptionObjectAlredyExistWithThatKey, exceptionTheObjectDoesntExist {
+    public void removeObjectDoesntExistInList()  {
         setupStage2();
         try {
             hashTable.remove(0.26);
@@ -127,80 +162,102 @@ public class HashTableTest {
         } catch (exceptionTheObjectDoesntExist e) {
             assertNotNull("Exception object doesnt exist",e);
         } catch (exceptionThisDataStructureIsVoid e) {
-            throw new RuntimeException(e);
+           fail();
         }
 
     }
 
     @Test
-    public void removeObjectInList() throws exceptionThisDataStructureIsVoid, exceptionObjectAlredyExistWithThatKey, exceptionTheObjectDoesntExist {
+    public void removeObjectInList()  {
         setupStage2();
-        boolean removed = hashTable.remove(0.3);
-        assertTrue(removed);
+        try {
+            boolean removed = hashTable.remove(0.3);
+            assertTrue(removed);
+        }catch (exceptionThisDataStructureIsVoid | exceptionTheObjectDoesntExist e) {
+            fail();
+        }
     }
     @Test
-    public void removeObjectInListWithCollision() throws exceptionThisDataStructureIsVoid, exceptionObjectAlredyExistWithThatKey, exceptionTheObjectDoesntExist {
+    public void removeObjectInListWithCollision()  {
         setupStageWithColosion();
         assertEquals("The nodes haves the same positon",hashTable.hash(0.36),hashTable.hash(1.6),hashTable.hash(14.12));
         assertEquals("The nodes haves the same positon",hashTable.hash(0.36),hashTable.hash(1.37));
-        hashTable.add(0.36, "Marco");
-        boolean removed = hashTable.remove(14.12); //Remove->"Aurelio"
-        assertTrue("The object was removed",removed);
+        try{
+            hashTable.add(0.36, "Marco");
+            boolean removed = hashTable.remove(14.12); //Remove->"Aurelio"
+            assertTrue("The object was removed",removed);
+        }catch (exceptionThisDataStructureIsVoid | exceptionTheObjectDoesntExist | exceptionObjectAlredyExistWithThatKey e) {
+            fail();
+        }
+
     }
 
     @Test
-    public void listIsEmpty() throws exceptionObjectAlredyExistWithThatKey, exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist {
+    public void listIsEmpty()  {
         setupStage2();
-        hashTable.remove(0.3);
-        hashTable.remove(0.4);
-        hashTable.remove(2.0);
-        hashTable.remove(2.4);
-        hashTable.remove(4.5);
-        hashTable.remove(6.5);
-        hashTable.remove(8.5);
+        try {
+            hashTable.remove(0.3);
+            hashTable.remove(0.4);
+            hashTable.remove(2.0);
+            hashTable.remove(2.4);
+            hashTable.remove(4.5);
+            hashTable.remove(6.5);
+            hashTable.remove(8.5);
+        }catch (exceptionThisDataStructureIsVoid | exceptionTheObjectDoesntExist e) {
+            fail();
+        }
         assertTrue(hashTable.isEmpty());
     }
 
     @Test
-    public void currectlyClone() throws exceptionObjectAlredyExistWithThatKey, exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist {
+    public void currectlyClone()  {
         setupStage2();
         HashTable<Double,String> clone = hashTable.clone();
-        assertNotEquals("The reference to the object must be different: ",hashTable,clone);
-        assertEquals("The size of the object must be the same: ",hashTable.getSize(),clone.getSize());
-        assertEquals("The keys must return the same elements",hashTable.search(0.3),clone.search(0.3));
-        assertEquals("The keys must return the same elements",hashTable.search(0.4),clone.search(0.4));
-        assertEquals("The keys must return the same elements",hashTable.search(2.0),clone.search(2.0));
-        assertEquals("The keys must return the same elements",hashTable.search(2.4),clone.search(2.4));
-        assertEquals("The keys must return the same elements",hashTable.search(4.5),clone.search(4.5));
-        assertEquals("The keys must return the same elements",hashTable.search(6.5),clone.search(6.5));
-        assertEquals("The keys must return the same elements",hashTable.search(8.5),clone.search(8.5));
+        try {
+
+            assertNotEquals("The reference to the object must be different: ",hashTable,clone);
+            assertEquals("The size of the object must be the same: ",hashTable.getSize(),clone.getSize());
+            assertEquals("The keys must return the same elements",hashTable.search(0.3),clone.search(0.3));
+            assertEquals("The keys must return the same elements",hashTable.search(0.4),clone.search(0.4));
+            assertEquals("The keys must return the same elements",hashTable.search(2.0),clone.search(2.0));
+            assertEquals("The keys must return the same elements",hashTable.search(2.4),clone.search(2.4));
+            assertEquals("The keys must return the same elements",hashTable.search(4.5),clone.search(4.5));
+            assertEquals("The keys must return the same elements",hashTable.search(6.5),clone.search(6.5));
+            assertEquals("The keys must return the same elements",hashTable.search(8.5),clone.search(8.5));
+
+        }catch (exceptionThisDataStructureIsVoid | exceptionTheObjectDoesntExist e) {
+            fail();
+        }
     }
 
     @Test
-    public void differenteObjectReferenceOnClonedNodes() throws exceptionObjectAlredyExistWithThatKey, exceptionThisDataStructureIsVoid, exceptionTheObjectDoesntExist{
+    public void differenteObjectReferenceOnClonedNodes() {
         setupStage2();
         System.out.println("Este medoto se comprueba mediante la eliminacion de nodos, es decir si se elimina el nodo original el clonado debe seguir existiendo ya que no apunta al mismo objeto porque son idependientes");
         HashTable<Double,String> clone = hashTable.clone();
-        hashTable.remove(0.3);
         try {
+            hashTable.remove(0.3);
             hashTable.search(0.3);
             fail();
         } catch (exceptionTheObjectDoesntExist e) {
             assertNotNull("Exception object doesnt exist",e);
         } catch (exceptionThisDataStructureIsVoid e) {
-            throw new RuntimeException(e);
+            fail();
         }
 
-        assertEquals("The key must return the same elements",clone.search(0.3),"Hola");
-
-        clone.add(-30.0,"Hi my bro");
         try {
+            assertEquals("The key must return the same elements",clone.search(0.3),"Hola");
+            try {
+                clone.add(-30.0,"Hi my bro");
+            } catch (exceptionObjectAlredyExistWithThatKey e) {
+                fail();
+            }
             hashTable.search(-30.0);
             fail();
         } catch (exceptionTheObjectDoesntExist e) {
             assertNotNull("Exception object doesnt exist",e);
         } catch (exceptionThisDataStructureIsVoid e) {
-            throw new RuntimeException(e);
+            fail();
         }
 
     }

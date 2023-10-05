@@ -45,11 +45,15 @@ public class QueueTest {
 
     }
     @Test
-    public void removeFrontValueInQueue() throws exceptionThisDataStructureIsVoid {
+    public void removeFrontValueInQueue() {
         setupStage4();
-        String front=queue.poll();
-        assertEquals("Hola",front);
-        assertNotEquals(front,queue.front());
+        try {
+            String front=queue.poll();
+            assertEquals("Hola",front);
+            assertNotEquals(front,queue.front());
+        }catch (exceptionThisDataStructureIsVoid e) {
+            fail();
+        }
     }
     @Test
     public void frontValueInQueueVoid()  {
@@ -63,10 +67,14 @@ public class QueueTest {
         }
     }
     @Test
-    public void returnFrontValueInQueue() throws exceptionThisDataStructureIsVoid {
+    public void returnFrontValueInQueue()  {
         setupStage4();
-        String front=queue.front();
-        assertEquals("Hola",front);
+        try {
+            String front=queue.front();
+            assertEquals("Hola",front);
+        }catch (exceptionThisDataStructureIsVoid e) {
+            fail();
+        }
     }
 
     @Test
@@ -77,7 +85,7 @@ public class QueueTest {
                 queue.poll();
             }
         }catch (exceptionThisDataStructureIsVoid e) {
-            throw new RuntimeException(e);
+            fail();
         }
         assertTrue(queue.isEmpty());
     }
@@ -99,7 +107,7 @@ public class QueueTest {
                 assertEquals("The value of the object must be the same: ",queue.poll(),clone.poll());
             }
         }catch (exceptionThisDataStructureIsVoid e){
-            throw new RuntimeException(e);
+            fail();
         }
     }
     @Test
@@ -113,10 +121,8 @@ public class QueueTest {
            assertNotEquals("The reference to the object must be different: ",queue.poll(),clone.poll());
 
        }catch (exceptionThisDataStructureIsVoid e){
-           throw new RuntimeException(e);
+           fail();
        }
-
-
 
     }
 }
