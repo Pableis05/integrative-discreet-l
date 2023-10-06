@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 import model.Task;
 public class TaskTest {
 
-
     private Task task;
     public void setUpVoid(){
         task = null;

@@ -13,7 +13,7 @@ public class Main {
         controllerAgenda = new ControllerAgenda();
     }
 
-    public static void main(String[] args) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
+    public static void main(String[] args){
         Main m = new Main();
         m.menu();
     }
@@ -219,6 +219,7 @@ public class Main {
         } catch (exceptionThisDataStructureIsVoid e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
+
     }
 
     public void showTasks() {

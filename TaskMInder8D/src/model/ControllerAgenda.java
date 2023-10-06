@@ -12,7 +12,6 @@ public class ControllerAgenda {
         agenda = new Agenda();
         undoStack = new Stack<>();
         saveState("Basic initial version");
-
     }
 
     public void addTask(String title, String description, String date, Integer priority){
@@ -30,7 +29,6 @@ public class ControllerAgenda {
         saveState("remove task by title: " + searchTask(id).getTitle());
         agenda.removeTask(id);
     }
-
 
     public void modifyTask(Integer id, String title, String description, String date, Integer priority) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
         agenda.modifyTask(id, title, description, date, priority);

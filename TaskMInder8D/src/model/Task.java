@@ -77,7 +77,7 @@ public class Task implements Cloneable{
      * @return The toString() method is returning a string representation of a Task object. The string includes the values of the id, title, description, date, and priority properties of the Task object.
      */
     public String toString() {
-        return "Task [ " + "ID: " + id + "/ Title: " + title + "/ Description: " + description + "/ Date: " + date + "/ Priority: " + priority + " ]";
+        return "Task [ " + "ID: " + id + "/  Title: " + title + "/  Description: " + description + "/  Date: " + date + "/  Priority: " + priority + " ]";
     }
 
 }
