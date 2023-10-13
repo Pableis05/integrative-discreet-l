@@ -14,6 +14,9 @@ public class ControllerAgendaTest {
     private ControllerAgenda control;
     private ArrayList<Agenda> agenda;
     private ArrayList<Task> tasks;
+    private final int MAX_SIZE=100;
+
+
 
 
     private void setupStage1(){
@@ -26,7 +29,7 @@ public class ControllerAgendaTest {
     private void setupStageAddTask(){
         setupStage1();
         int j=0;
-        for (int i = 1; i <=100; i++) {
+        for (int i = 1; i <=MAX_SIZE; i++) {
             control.addTask("title"+i, "description"+i, "date"+i, j++);
             tasks.add(new Task(i,"title"+i, "description"+i, "date"+i, j));
             if(j==4){
@@ -111,6 +114,7 @@ public class ControllerAgendaTest {
             }
         }
     }
+
 
 
 

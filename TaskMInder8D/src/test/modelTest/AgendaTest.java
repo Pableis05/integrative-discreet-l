@@ -48,7 +48,7 @@ public class AgendaTest {
         ArrayList<Task> taskList = new ArrayList<>();
         for (int i = 0; i < 1000; i++) {
             int priority = 0;//random.nextInt(4);
-            taskList.add(new Task(i + 1, "Tittle " + i, i * i + "", "00-00-0000", priority++));
+            taskList.add(new Task(i + 1, "Tittle " + i,"Description "+ i * i , "00-00-0000", priority++));
             if (priority == 4)
                 priority = 0;
         }
