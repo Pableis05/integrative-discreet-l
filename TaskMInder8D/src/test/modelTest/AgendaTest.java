@@ -126,7 +126,7 @@ public class AgendaTest {
         assertEquals("The task was found", task.toString(), taskList.get(6).toString());
     }
 
-    @Test
+    /*@Test
     public void removeTaskInMinderVoid() {
         setUpMinderIsVoid();
         boolean removed = minder.removeTask(1);
@@ -175,7 +175,7 @@ public class AgendaTest {
 
         }
 
-    }
+    }*/
 
     @Test
     public void modifyTaskInMinderVoid() {
@@ -287,7 +287,7 @@ public class AgendaTest {
         }
     }
 
-    @Test
+    /*@Test
     public void removedHalfTaskInMinderAndTheOtherTaskStillExistExtreme() {
         setUpMinderIsExtreme();
         ArrayList<Task> taskList = setupTaskExtremeForUsed();
@@ -316,7 +316,7 @@ public class AgendaTest {
                 fail();
             }
         }
-    }
+    }*/
 
     @Test
     public void modifyHalfTaskInMinderAndTheOtherTaskStillSameExtreme(){

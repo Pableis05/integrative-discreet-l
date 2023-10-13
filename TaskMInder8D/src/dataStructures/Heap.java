@@ -155,8 +155,10 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
 
         for (int i = 1; i < heapArr.size(); i++) {
 
-            if(heapArr.get(i).getNode().equals(node))
+            if(heapArr.get(i).getNode().equals(node)){
                 search = heapArr.get(i).getNode();
+                break;
+            }
 
         }
         return search;
