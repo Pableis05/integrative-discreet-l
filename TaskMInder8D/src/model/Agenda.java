@@ -67,28 +67,23 @@ public class Agenda implements Cloneable{
         }
     }
 
-/**
- * The removeTask function removes a task from a list of tasks based on its ID and updates the appropriate data structure.
- * 
- * @param id The id parameter is an Integer that represents the unique identifier of the task that needs to be removed.
- * @return The method is returning a boolean value. It returns true if the task with the given id was successfully removed, and false if the task does not exist or if the data structure is empty.
- */
 
-    public boolean removeTask(Integer id){
+
+    public String removeTask(Integer option){
+        String msg = "";
+        Task task = null;
         try {
-            Task task = searchTask(id);
-            tasks.remove(id);
-            if (task.getPriority() == 0) {
-                removeNonPriorityTask(task);
+            if (option == 1) {
+                task = priorityTasks.extractMax();
             }else{
-                removePriorityTask(task);
+                task = nonPriorityTasks.poll();
             }
-            return true;
-        } catch (exceptionTheObjectDoesntExist e) {
-            return false;
-        } catch (exceptionThisDataStructureIsVoid e){
-            return false;
+            tasks.remove(task.getId());
+            msg = task.getTitle();
+            return msg;
         }
+        catch (exceptionThisDataStructureIsVoid e) {return "";}
+        catch (exceptionTheObjectDoesntExist e) {return "";}
     }
 
 
@@ -330,6 +325,14 @@ public class Agenda implements Cloneable{
 
     public void setChangeMessage(String changeMessage) {
         this.changeMessage = changeMessage;
+    }
+
+    public Queue<Task> getNonPriorityTasks() {
+        return nonPriorityTasks;
+    }
+
+    public Heap<Task> getPriorityTasks() {
+        return priorityTasks;
     }
 
 

@@ -112,24 +112,36 @@ public class Main {
     }
 
     public void removeTask(){
+        boolean validInput = false;
+        do {
+            try {
+                int option = -1;
+                String input = JOptionPane.showInputDialog(controllerAgenda.showTasks() + "\nType 1 to delete priority task or 2 to delete NonPriority task");
 
-        try {
-            String id;
-            do {
-                id = JOptionPane.showInputDialog(controllerAgenda.showTasks()+"\nEnter the id of the task");
-                if (id == null) {
+                if (input == null) {
                     return;
                 }
-                if (!id.matches("\\d+")) {
-                    JOptionPane.showMessageDialog(null, "Error: " + id + " is not a valid integer");
+
+                if(!input.matches("\\d+")) {
+                    throw new exceptionNotIntegerFormat(input);
                 }
-            } while (!id.matches("\\d+"));
-            controllerAgenda.removeTask(Integer.parseInt(id));
-        } catch (exceptionTheObjectDoesntExist e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } catch (exceptionThisDataStructureIsVoid e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+                option = Integer.parseInt(input);
+
+                if (option == 1 || option == 2) {
+                    JOptionPane.showMessageDialog(null, controllerAgenda.removeTask(option));
+                    validInput = true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid option");
+                }
+
+                } catch (exceptionNotIntegerFormat e) {
+                    JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+                } catch (exceptionThisDataStructureIsVoid e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
+
+            } while (!validInput);
+
 
     }
 

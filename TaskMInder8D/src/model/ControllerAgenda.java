@@ -19,15 +19,18 @@ public class ControllerAgenda {
         saveState("Add new task: " + title);
     }
 
-    public void removeTask(Integer id) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
-        if(searchTask(id) == null){
-            throw new exceptionTheObjectDoesntExist("The task with id: " + id + " doesn't exist");
+    public String removeTask(Integer option) throws exceptionThisDataStructureIsVoid{
+
+        String task = "";
+        if(option == 1 && agenda.getPriorityTasks().isEmpty()){
+            throw new exceptionThisDataStructureIsVoid();
+        }else if(option == 2 && agenda.getNonPriorityTasks().isEmpty()){
+            throw new exceptionThisDataStructureIsVoid();
+        }else {
+            task = "The task "+agenda.removeTask(option)+" was removed";
+            saveState(task);
         }
-        if(getAgenda().getTasks().isEmpty()){
-           throw new exceptionThisDataStructureIsVoid();
-        }
-        saveState("remove task by title: " + searchTask(id).getTitle());
-        agenda.removeTask(id);
+        return task;
     }
 
     public void modifyTask(Integer id, String title, String description, String date, Integer priority) throws exceptionTheObjectDoesntExist, exceptionThisDataStructureIsVoid{
