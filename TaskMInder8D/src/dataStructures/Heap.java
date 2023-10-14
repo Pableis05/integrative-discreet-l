@@ -231,16 +231,12 @@ public class Heap<V> implements IPriorityQueue<V>, Cloneable{
      */
     public String toString() {
         String msg = "";
-
-        for (int i = 1; i < heapArr.size(); i++) {
+        Heap<V> clone = clone();
+        while (!clone.isEmpty()) {
             try {
-
-                msg += extractMax() + "\n";
-
+                msg += clone.extractMax() + "\n";
             } catch (exceptionThisDataStructureIsVoid e) {
-
-                msg=e.getMessage();
-
+                msg = e.getMessage();
             }
         }
         return msg;

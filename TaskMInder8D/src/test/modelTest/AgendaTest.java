@@ -15,6 +15,14 @@ public class AgendaTest {
         minder = new Agenda();
     }
 
+    public void setUpMinderIsNormal() {
+        minder = new Agenda();
+        ArrayList<Task> taskList = setUpTaskForUsed();
+        for (int i = 0; i < taskList.size(); i++) {
+            minder.addTask(taskList.get(i).getTitle(), taskList.get(i).getDescription(), taskList.get(i).getDate(), Integer.valueOf(taskList.get(i).getPriority()));
+        }
+    }
+
     public ArrayList setUpTaskForUsed() {
         ArrayList<Task> taskList = new ArrayList<>();
         int idCounter = 1; // Iniciar el contador de ID en 1
@@ -34,14 +42,6 @@ public class AgendaTest {
         taskList.add(new Task(idCounter++, "Family Dinner", "Plan a family dinner", "15-04-2024", 1));
         taskList.add(new Task(idCounter, "Plan Vacation", "Research and book flights", "30-04-2024", 4));
         return taskList;
-    }
-
-    public void setUpMinderIsNormal() {
-        minder = new Agenda();
-        ArrayList<Task> taskList = setUpTaskForUsed();
-        for (int i = 0; i < taskList.size(); i++) {
-            minder.addTask(taskList.get(i).getTitle(), taskList.get(i).getDescription(), taskList.get(i).getDate(), Integer.valueOf(taskList.get(i).getPriority()));
-        }
     }
 
     public ArrayList<Task> setupTaskExtremeForUsed() {
@@ -126,56 +126,83 @@ public class AgendaTest {
         assertEquals("The task was found", task.toString(), taskList.get(6).toString());
     }
 
-    /*@Test
-    public void removeTaskInMinderVoid() {
+    @Test
+    public void removeTaskPriorityOrNoPriorityInMinderVoid() {
         setUpMinderIsVoid();
-        boolean removed = minder.removeTask(1);
-        assertFalse("The task was not removed because the list is void", removed);
+
+        String msgPriority = minder.removeTask(1);
+        String msgNoPriority = minder.removeTask(2);
+        assertEquals(msgPriority,"The data is empty in the priority task");
+        assertEquals(msgNoPriority,"The data is empty in the non-priority task");
+
     }
 
     @Test
-    public void removeTaskInMinderATaskWhatDontExist() {
+    public void removeTaskPriorityMinderNormal(){
         setUpMinderIsNormal();
-        boolean removed = minder.removeTask(100);
-        assertFalse("The task was not removed because the task dont exist", removed);
-    }
-
-    @Test
-    public void removedTaskInMinderATaskWhatExist() {
-        setUpMinderIsNormal();
-        boolean removed = minder.removeTask(7);
-        assertTrue("The task was removed", removed);
-        try {
-            try {
-                minder.searchTask(7);
-            } catch (exceptionThisDataStructureIsVoid e) {
-                fail();
-            }
-        } catch (exceptionTheObjectDoesntExist e) {
-            assertNotNull(e);
-        }
-    }
-
-    @Test
-    public void removedTaskInMinderAndTheOtherTaskStillExist() {
-        setUpMinderIsNormal();
-        int id = 7;//The task what will be removed by its id
+        String msgPriority = minder.removeTask(1);
         ArrayList<Task> taskList = setUpTaskForUsed();
-        boolean removed = minder.removeTask(id);
-        assertTrue("The task was removed", removed);
+        assertEquals(msgPriority,taskList.get(7).getTitle());
 
-        for (int i = 0; i < taskList.size(); i++) {
-            if (i != id - 1) {
-                try {
-                    assertEquals("The task was not removed", taskList.get(i).toString(), minder.searchTask(i + 1).toString());
-                } catch (exceptionTheObjectDoesntExist | exceptionThisDataStructureIsVoid e) {
-                    fail();
-                }
-            }
+    }
 
-        }
+    @Test
+    public void removeTaskNoPriorityMinderNormal(){
+        setUpMinderIsNormal();
 
-    }*/
+
+        String msgNoPriority = minder.removeTask(2);
+        ArrayList<Task> taskList = setUpTaskForUsed();
+        assertEquals(msgNoPriority,taskList.get(2).getTitle());
+    }
+
+    @Test
+    public void removeAllTaskPriorityMinderNormal(){
+          setUpMinderIsNormal();
+        ArrayList<Task> taskList = setUpTaskForUsed();
+        String msgPriority = minder.removeTask(1);
+        assertEquals(msgPriority,taskList.get(7).getTitle());
+        msgPriority = minder.removeTask(1);
+        assertEquals(msgPriority,taskList.get(14).getTitle());
+        msgPriority = minder.removeTask(1);
+        assertEquals(msgPriority,taskList.get(11).getTitle());
+        msgPriority = minder.removeTask(1);
+        assertEquals(msgPriority,taskList.get(4).getTitle());
+        msgPriority = minder.removeTask(1);
+        assertEquals(msgPriority,taskList.get(0).getTitle());
+        msgPriority = minder.removeTask(1);
+        assertEquals(msgPriority,taskList.get(10).getTitle());
+        msgPriority = minder.removeTask(1);
+        assertEquals(msgPriority,taskList.get(5).getTitle());
+        msgPriority = minder.removeTask(1);
+        assertEquals(msgPriority,taskList.get(8).getTitle());
+        msgPriority = minder.removeTask(1);
+        assertEquals(msgPriority,taskList.get(1).getTitle());
+        msgPriority = minder.removeTask(1);
+        assertEquals(msgPriority,taskList.get(13).getTitle());
+        msgPriority = minder.removeTask(1);
+        assertEquals(msgPriority,taskList.get(3).getTitle());
+        msgPriority = minder.removeTask(1);
+        assertEquals(msgPriority,"The data is empty in the priority task");
+
+    }
+
+    @Test
+    public void removeAllTaskNoPriorityInTheMinderNormal(){
+        setUpMinderIsNormal();
+        ArrayList<Task> taskList = setUpTaskForUsed();
+        String msgNoPriority = minder.removeTask(2);
+        assertEquals(msgNoPriority,taskList.get(2).getTitle());
+        msgNoPriority = minder.removeTask(2);
+        assertEquals(msgNoPriority,taskList.get(6).getTitle());
+        msgNoPriority = minder.removeTask(2);
+        assertEquals(msgNoPriority,taskList.get(9).getTitle());
+        msgNoPriority = minder.removeTask(2);
+        assertEquals(msgNoPriority,taskList.get(12).getTitle());
+
+        msgNoPriority = minder.removeTask(2);
+        assertEquals(msgNoPriority,"The data is empty in the non-priority task");
+    }
 
     @Test
     public void modifyTaskInMinderVoid() {
@@ -286,37 +313,6 @@ public class AgendaTest {
             }
         }
     }
-
-    /*@Test
-    public void removedHalfTaskInMinderAndTheOtherTaskStillExistExtreme() {
-        setUpMinderIsExtreme();
-        ArrayList<Task> taskList = setupTaskExtremeForUsed();
-        int size = taskList.size();
-
-        for (int i = 0; i < size / 2; i++) {
-            boolean removed = minder.removeTask(i + 1);
-            try {
-                minder.searchTask(i + 1);
-                fail();
-            } catch (exceptionTheObjectDoesntExist e) {
-                assertNotNull(e);
-            } catch (exceptionThisDataStructureIsVoid e) {
-                fail();
-            }
-            assertTrue("The task was removed", removed);
-            Task task = taskList.get(i);
-            taskList.remove(0);
-
-        }
-        int j = 0;
-        for (int i = size / 2; i < size; i++) {
-            try {
-                assertEquals("The task was not removed", taskList.get(j++).toString(), minder.searchTask(i + 1).toString());
-            } catch (exceptionTheObjectDoesntExist | exceptionThisDataStructureIsVoid e) {
-                fail();
-            }
-        }
-    }*/
 
     @Test
     public void modifyHalfTaskInMinderAndTheOtherTaskStillSameExtreme(){

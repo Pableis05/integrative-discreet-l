@@ -20,7 +20,6 @@ public class ControllerAgenda {
     }
 
     public String removeTask(Integer option) throws exceptionThisDataStructureIsVoid{
-
         String task = "";
         if(option == 1 && agenda.getPriorityTasks().isEmpty()){
             throw new exceptionThisDataStructureIsVoid();

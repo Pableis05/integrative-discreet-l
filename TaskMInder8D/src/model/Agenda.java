@@ -72,18 +72,22 @@ public class Agenda implements Cloneable{
     public String removeTask(Integer option){
         String msg = "";
         Task task = null;
+        String priority = "";
         try {
             if (option == 1) {
+                priority = "priority";
                 task = priorityTasks.extractMax();
             }else{
+                priority = "non-priority";
                 task = nonPriorityTasks.poll();
             }
             tasks.remove(task.getId());
             msg = task.getTitle();
             return msg;
         }
-        catch (exceptionThisDataStructureIsVoid e) {return "";}
-        catch (exceptionTheObjectDoesntExist e) {return "";}
+        catch (exceptionThisDataStructureIsVoid e) {return e.getMessage()+" in the "+priority+" task";}
+        catch (exceptionTheObjectDoesntExist e) {return e.getMessage();}
+
     }
 
 
@@ -308,7 +312,7 @@ public class Agenda implements Cloneable{
             try {
                 msg += " >>> " + clone.extractMax().toString() + "\n";
             }catch (exceptionThisDataStructureIsVoid e){
-
+                msg += e.getMessage();
             }
         }
 
