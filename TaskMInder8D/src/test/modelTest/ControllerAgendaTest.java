@@ -95,24 +95,6 @@ public class ControllerAgendaTest {
         }
     }
 
-    private void setupStageWithTasksRemove(){
-        setupStageAddTask();
-        agenda = new ArrayList<>();
-        tasks = new ArrayList<>();
-        int id=100;
-        for (int i = 0; i < 10; i++) {
-            try {
-                tasks.add(0,control.searchTask(id-i));
-                control.removeTask(id-i);
-                agenda.add(0,control.getAgenda().clone());
-
-            } catch (exceptionTheObjectDoesntExist | exceptionThisDataStructureIsVoid e) {
-                fail();
-            }
-        }
-    }
-
-
     @Test
     public void undoVersionWithoutAnyChanges(){
         setupStage1();
@@ -122,7 +104,6 @@ public class ControllerAgendaTest {
     @Test
     public void undoVersionINAddVersion(){
         setupStageAddTask();
-        int j=agenda.size()-1;
         for (int i = 100; i > 1; i--) {
             try {
                 Task task = control.searchTask(i-1);
