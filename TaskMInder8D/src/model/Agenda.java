@@ -69,6 +69,12 @@ public class Agenda implements Cloneable{
 
 
 
+    /**
+     * The function removes a task from either the priority or non-priority task list and returns the title of the removed task.
+     * 
+     * @param option An integer representing the option chosen by the user. If the value is 1, it indicates that the user wants to remove a task from the priority tasks list. If the value is any other number, it indicates that the user wants to remove a task from the non-priority tasks list.
+     * @return The method is returning a String message.
+     */
     public String removeTask(Integer option){
         String msg = "";
         Task task = null;
@@ -91,6 +97,12 @@ public class Agenda implements Cloneable{
     }
 
 
+    /**
+     * The function removes a specific task from a priority queue and returns true if successful, false otherwise.
+     * 
+     * @param task The task parameter is an object of the Task class that represents the task to be removed from the priorityTasks heap.
+     * @return The method is returning a boolean value.
+     */
     private boolean removePriorityTask(Task task) {
         Heap<Task> tempHeap = new Heap<>();
         int sizePriority = priorityTasks.size();
@@ -127,6 +139,12 @@ public class Agenda implements Cloneable{
 
     }
 
+    /**
+     * The function removes a specific task from a non-priority task queue and returns true if the task was successfully removed, or false if the queue is empty or the task was not found.
+     * 
+     * @param task The task parameter is an object of type Task that represents the task to be removed from the nonPriorityTasks queue.
+     * @return The method is returning a boolean value.
+     */
     private boolean removeNonPriorityTask(Task task) throws exceptionThisDataStructureIsVoid {
 
         try {
@@ -188,6 +206,13 @@ public class Agenda implements Cloneable{
         }
     }
 
+    /**
+     * The function modifies the priority of a task in a priority queue by extracting all tasks, replacing the specified task with a new task, and then reinserting all tasks back into the priority queue.
+     * 
+     * @param task The task parameter is the task that you want to modify the priority of.
+     * @param newTask The newTask parameter is an instance of the Task class that represents the updated version of the task.
+     * @return The method is returning a boolean value of true.
+     */
     private boolean modifyTaskPriorityTask(Task task, Task newTask) throws exceptionThisDataStructureIsVoid {
         Heap<Task> tempHeap = new Heap<>();
         int sizePriority = priorityTasks.size();
@@ -208,6 +233,13 @@ public class Agenda implements Cloneable{
 
     }
 
+    /**
+     * The function modifies a non-priority task in a queue of tasks by replacing it with a new task.
+     * 
+     * @param task The task parameter is the task that you want to modify in the non-priority tasks queue.
+     * @param newTask The new task that will replace the existing task in the non-priority task queue.
+     * @return The method is returning a boolean value.
+     */
     private boolean modifyTaskNonPriorityTask(Task task, Task newTask) throws exceptionThisDataStructureIsVoid{
         try {
             Queue<Task> tempQueue = new Queue<>();
@@ -319,22 +351,47 @@ public class Agenda implements Cloneable{
         return msg;
     }
 
+   /**
+    * The function sets the value of the counter variable.
+    * 
+    * @param count The parameter "count" is an integer value that is used to set the value of the "count" variable in the class.
+    */
     public void setCounter(int count) {
         this.count = count;
     }
 
+    /**
+     * The function returns the change message.
+     * 
+     * @return The method is returning a String value.
+     */
     public String getChangeMessage() {
         return changeMessage;
     }
 
+    /**
+     * The function sets the value of the changeMessage variable.
+     * 
+     * @param changeMessage The parameter "changeMessage" is a String that represents the message to be set for a change.
+     */
     public void setChangeMessage(String changeMessage) {
         this.changeMessage = changeMessage;
     }
 
+    /**
+     * The function returns a queue of non-priority tasks.
+     * 
+     * @return The method is returning a Queue of Task objects.
+     */
     public Queue<Task> getNonPriorityTasks() {
         return nonPriorityTasks;
     }
 
+    /**
+     * The function returns a Heap of Task objects representing priority tasks.
+     * 
+     * @return The method is returning a Heap of Task objects.
+     */
     public Heap<Task> getPriorityTasks() {
         return priorityTasks;
     }
